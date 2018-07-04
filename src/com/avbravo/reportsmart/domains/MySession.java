@@ -4,6 +4,8 @@
  */
 package com.avbravo.reportsmart.domains;
 
+import com.avbravo.reportsmart.rules.EntidadPatron;
+import com.avbravo.reportsmarts.beans.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +17,7 @@ import org.openide.NotifyDescriptor;
  * @author avbravo
  */
 public class MySession {
-
+static Boolean allTablesWithPrimaryKey = true;
     static String SistemaOperativo;
     static String nombreProyecto;
     static String tipoProyecto;
@@ -39,20 +41,26 @@ public class MySession {
     static String nameOfPackage="";
     static DefaultTableModel modeloFields;
     static DefaultTableModel modeloParameters;
+     static List<Entidad> entidadList = new ArrayList<>();
    static  List<Fields> fieldsList = new ArrayList<>();
    static  List<Parameters> parametersList = new ArrayList<>();
+    static List<String> mensajesInformacion = new ArrayList<>();
+static  List<EntidadPatron> entidadPatronList = new ArrayList<>();
 
-    public static String getNameOfProject() {
-        return nameOfProject;
+
+    public static Boolean getAllTablesWithPrimaryKey() {
+        return allTablesWithPrimaryKey;
     }
 
-    public static void setNameOfProject(String nameOfProject) {
-        MySession.nameOfProject = nameOfProject;
+    public static void setAllTablesWithPrimaryKey(Boolean allTablesWithPrimaryKey) {
+        MySession.allTablesWithPrimaryKey = allTablesWithPrimaryKey;
     }
 
+
+
+
    
-   
-   
+
     public static String getFields() {
         return fields;
     }
@@ -69,9 +77,22 @@ public class MySession {
         MySession.parameters = parameters;
     }
 
-   
-   
-   
+    public static String getNameOfProject() {
+        return nameOfProject;
+    }
+
+    public static void setNameOfProject(String nameOfProject) {
+        MySession.nameOfProject = nameOfProject;
+    }
+
+    public static List<Entidad> getEntidadList() {
+        return entidadList;
+    }
+
+    public static void setEntidadList(List<Entidad> entidadList) {
+        MySession.entidadList = entidadList;
+    }
+
     public static List<Parameters> getParametersList() {
         return parametersList;
     }
@@ -80,6 +101,23 @@ public class MySession {
         MySession.parametersList = parametersList;
     }
 
+    public static List<String> getMensajesInformacion() {
+        return mensajesInformacion;
+    }
+
+    public static void setMensajesInformacion(List<String> mensajesInformacion) {
+        MySession.mensajesInformacion = mensajesInformacion;
+    }
+
+    public static List<EntidadPatron> getEntidadPatronList() {
+        return entidadPatronList;
+    }
+
+    public static void setEntidadPatronList(List<EntidadPatron> entidadPatronList) {
+        MySession.entidadPatronList = entidadPatronList;
+    }
+
+   
    
    
     public static List<Fields> getFieldsList() {

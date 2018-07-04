@@ -5,10 +5,24 @@
  */
 package com.avbravo.reportsmart;
 
+import com.avbravo.reportsmart.domains.EntityReader;
 import com.avbravo.reportsmart.domains.MySession;
+import com.avbravo.reportsmart.domains.Parameters;
+import com.avbravo.reportsmart.domains.Utilidades;
 import com.avbravo.reportsmart.projects.ProyectoInformacion;
+import com.avbravo.reportsmarts.beans.Atributos;
+import com.avbravo.reportsmarts.beans.Entidad;
+import java.awt.GridBagConstraints;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.api.project.ui.OpenProjects;
@@ -19,7 +33,6 @@ import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
-import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
@@ -48,9 +61,19 @@ import org.openide.util.NbBundle.Messages;
     "HINT_ReportSmartTopComponent=This is a ReportSmart window"
 })
 public final class ReportSmartTopComponent extends TopComponent {
-NotifyDescriptor nd;
+
+    private GridBagConstraints constraints = new GridBagConstraints();
+    NotifyDescriptor nd;
+    Boolean entityValid = false;
+    Boolean parametersValid = false;
+    List<Parameters> parametersList = new ArrayList<>();
+
     public ReportSmartTopComponent() {
         initComponents();
+        jTabbedPane1.remove(jPanelDesign);
+        jTabbedPane1.remove(jPanelCode);
+        entityValid = false;
+        parametersValid = false;
         setName(Bundle.CTL_ReportSmartTopComponent());
         setToolTipText(Bundle.HINT_ReportSmartTopComponent());
 
@@ -65,7 +88,7 @@ NotifyDescriptor nd;
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelProyecto = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNameOfReport = new javax.swing.JTextField();
@@ -74,29 +97,53 @@ NotifyDescriptor nd;
         jLabel4 = new javax.swing.JLabel();
         jTextFieldNameOfPackage = new javax.swing.JTextField();
         jButtonRefresh = new javax.swing.JButton();
-        jButtonSiguiente = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextFieldNameOfProject = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaClass = new javax.swing.JTextArea();
+        jButtonGotoPage2 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextAreaParameters = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanelDesign = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextAreaColumHeader = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextAreaTitle = new javax.swing.JTextArea();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextAreaPageHeader = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextAreaDetails = new javax.swing.JTextArea();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextAreaSummary = new javax.swing.JTextArea();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTextAreaColumFooter1 = new javax.swing.JTextArea();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTextAreaPageFooter1 = new javax.swing.JTextArea();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jEditorPaneSummer = new javax.swing.JEditorPane();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jEditorPaneTitle = new javax.swing.JEditorPane();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jEditorPaneColumnHeader = new javax.swing.JEditorPane();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jEditorPanePageHeader = new javax.swing.JEditorPane();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jEditorPaneDetails = new javax.swing.JEditorPane();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jEditorPaneColumnFooter = new javax.swing.JEditorPane();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jEditorPanePageFooter = new javax.swing.JEditorPane();
+        jPanel7 = new javax.swing.JPanel();
+        jComboBoxParameters = new javax.swing.JComboBox<>();
+        jComboBoxFields = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        jButtonGotoPage1 = new javax.swing.JButton();
+        jButtonGotoPage3 = new javax.swing.JButton();
+        jButtonAddParameter = new javax.swing.JButton();
+        jButtonAddField = new javax.swing.JButton();
+        jPanelCode = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPanel4 = new javax.swing.JPanel();
+        jButtonGotoPage2From3 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel5.border.title"))); // NOI18N
 
@@ -139,12 +186,7 @@ NotifyDescriptor nd;
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonSiguiente, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonSiguiente.text")); // NOI18N
-        jButtonSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSiguienteActionPerformed(evt);
-            }
-        });
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel6.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -152,26 +194,23 @@ NotifyDescriptor nd;
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldReportShortPath)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldReportShortPath)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jTextFieldNameOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonRefresh))
-                                    .addComponent(jTextFieldNameOfReport, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButtonSiguiente)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jTextFieldNameOfPackage, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonRefresh))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jTextFieldNameOfReport, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)))
+                        .addGap(0, 374, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -179,7 +218,8 @@ NotifyDescriptor nd;
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldNameOfReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNameOfReport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -189,9 +229,7 @@ NotifyDescriptor nd;
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldReportShortPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(jButtonSiguiente)
-                .addGap(33, 33, 33))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel6.border.title"))); // NOI18N
@@ -207,12 +245,16 @@ NotifyDescriptor nd;
             }
         });
 
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel1.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -222,149 +264,375 @@ NotifyDescriptor nd;
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTextAreaClass.setColumns(20);
+        jTextAreaClass.setRows(5);
+        jTextAreaClass.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaClass.toolTipText")); // NOI18N
+        jTextAreaClass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaClassKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTextAreaClass);
+
+        jButtonGotoPage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/next_1.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage2, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.text")); // NOI18N
+        jButtonGotoPage2.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.toolTipText")); // NOI18N
+        jButtonGotoPage2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGotoPage2ActionPerformed(evt);
+            }
+        });
+
+        jTextAreaParameters.setColumns(20);
+        jTextAreaParameters.setRows(5);
+        jTextAreaParameters.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaParameters.toolTipText")); // NOI18N
+        jScrollPane10.setViewportView(jTextAreaParameters);
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel5.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel7.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonGotoPage2)
+                        .addGap(21, 21, 21))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(37, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonGotoPage2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane10))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+
+        javax.swing.GroupLayout jPanelProyectoLayout = new javax.swing.GroupLayout(jPanelProyecto);
+        jPanelProyecto.setLayout(jPanelProyectoLayout);
+        jPanelProyectoLayout.setHorizontalGroup(
+            jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProyectoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelProyectoLayout.createSequentialGroup()
+                        .addGroup(jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelProyectoLayout.setVerticalGroup(
+            jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProyectoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelProyecto.TabConstraints.tabTitle"), jPanelProyecto); // NOI18N
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel9.border.title"))); // NOI18N
 
-        jTextAreaColumHeader.setColumns(20);
-        jTextAreaColumHeader.setRows(5);
-        jTextAreaColumHeader.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaColumHeader.text")); // NOI18N
-        jTextAreaColumHeader.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaColumHeader.toolTipText")); // NOI18N
-        jScrollPane3.setViewportView(jTextAreaColumHeader);
+        jEditorPaneSummer.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPaneSummer.border.title"))); // NOI18N
+        jScrollPane11.setViewportView(jEditorPaneSummer);
 
-        jTextAreaTitle.setColumns(20);
-        jTextAreaTitle.setRows(5);
-        jTextAreaTitle.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaTitle.text")); // NOI18N
-        jTextAreaTitle.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaTitle.toolTipText")); // NOI18N
-        jScrollPane4.setViewportView(jTextAreaTitle);
+        jEditorPaneTitle.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPaneTitle.border.title"))); // NOI18N
+        jScrollPane12.setViewportView(jEditorPaneTitle);
 
-        jTextAreaPageHeader.setColumns(20);
-        jTextAreaPageHeader.setRows(5);
-        jTextAreaPageHeader.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaPageHeader.text")); // NOI18N
-        jTextAreaPageHeader.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaPageHeader.toolTipText")); // NOI18N
-        jScrollPane5.setViewportView(jTextAreaPageHeader);
+        jEditorPaneColumnHeader.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPaneColumnHeader.border.title"))); // NOI18N
+        jScrollPane13.setViewportView(jEditorPaneColumnHeader);
 
-        jTextAreaDetails.setColumns(20);
-        jTextAreaDetails.setRows(5);
-        jTextAreaDetails.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaDetails.text")); // NOI18N
-        jTextAreaDetails.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaDetails.toolTipText")); // NOI18N
-        jTextAreaDetails.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextAreaDetailsKeyPressed(evt);
-            }
-        });
-        jScrollPane6.setViewportView(jTextAreaDetails);
+        jEditorPanePageHeader.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPanePageHeader.border.title"))); // NOI18N
+        jScrollPane14.setViewportView(jEditorPanePageHeader);
 
-        jTextAreaSummary.setColumns(20);
-        jTextAreaSummary.setRows(5);
-        jTextAreaSummary.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaSummary.text")); // NOI18N
-        jTextAreaSummary.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaSummary.toolTipText")); // NOI18N
-        jScrollPane7.setViewportView(jTextAreaSummary);
+        jEditorPaneDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPaneDetails.border.title"))); // NOI18N
+        jScrollPane15.setViewportView(jEditorPaneDetails);
 
-        jTextAreaColumFooter1.setColumns(20);
-        jTextAreaColumFooter1.setRows(5);
-        jTextAreaColumFooter1.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaColumFooter1.text")); // NOI18N
-        jTextAreaColumFooter1.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaColumFooter1.toolTipText")); // NOI18N
-        jScrollPane8.setViewportView(jTextAreaColumFooter1);
+        jEditorPaneColumnFooter.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPaneColumnFooter.border.title"))); // NOI18N
+        jScrollPane16.setViewportView(jEditorPaneColumnFooter);
 
-        jTextAreaPageFooter1.setColumns(20);
-        jTextAreaPageFooter1.setRows(5);
-        jTextAreaPageFooter1.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaPageFooter1.text")); // NOI18N
-        jTextAreaPageFooter1.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaPageFooter1.toolTipText")); // NOI18N
-        jScrollPane9.setViewportView(jTextAreaPageFooter1);
+        jEditorPanePageFooter.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jEditorPanePageFooter.border.title"))); // NOI18N
+        jScrollPane17.setViewportView(jEditorPanePageFooter);
+
+        jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/tools32.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton1.text")); // NOI18N
+
+        jButtonGotoPage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/back.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage1.text")); // NOI18N
+        jButtonGotoPage1.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage1.toolTipText")); // NOI18N
+        jButtonGotoPage1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGotoPage1ActionPerformed(evt);
+            }
+        });
+
+        jButtonGotoPage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/next_1.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage3, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage3.text")); // NOI18N
+        jButtonGotoPage3.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage3.toolTipText")); // NOI18N
+        jButtonGotoPage3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGotoPage3ActionPerformed(evt);
+            }
+        });
+
+        jButtonAddParameter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/add.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddParameter, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonAddParameter.text")); // NOI18N
+        jButtonAddParameter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddParameterActionPerformed(evt);
+            }
+        });
+
+        jButtonAddField.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/add.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddField, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonAddField.text")); // NOI18N
+        jButtonAddField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBoxParameters, 0, 130, Short.MAX_VALUE)
+                        .addComponent(jComboBoxFields, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGotoPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jComboBoxParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jComboBoxFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGotoPage1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonGotoPage3))
+        );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 26, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane17)
+                    .addComponent(jScrollPane11)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout jPanelDesignLayout = new javax.swing.GroupLayout(jPanelDesign);
+        jPanelDesign.setLayout(jPanelDesignLayout);
+        jPanelDesignLayout.setHorizontalGroup(
+            jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 745, Short.MAX_VALUE)
+        );
+        jPanelDesignLayout.setVerticalGroup(
+            jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDesignLayout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelDesign.TabConstraints.tabTitle"), jPanelDesign); // NOI18N
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel3.border.title"))); // NOI18N
+
+        jScrollPane1.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
         );
 
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jButtonGotoPage2From3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/back.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage2From3, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2From3.text")); // NOI18N
+        jButtonGotoPage2From3.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2From3.toolTipText")); // NOI18N
+        jButtonGotoPage2From3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGotoPage2From3ActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton3.text")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton5, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton5.text")); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton6, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton6.text")); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonGotoPage2From3)
+                .addGap(27, 27, 27)
+                .addComponent(jButton3)
+                .addGap(30, 30, 30)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5)
+                        .addComponent(jButton6))
+                    .addComponent(jButtonGotoPage2From3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanelCodeLayout = new javax.swing.GroupLayout(jPanelCode);
+        jPanelCode.setLayout(jPanelCodeLayout);
+        jPanelCodeLayout.setHorizontalGroup(
+            jPanelCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCodeLayout.createSequentialGroup()
+                .addGroup(jPanelCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCodeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCodeLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelCodeLayout.setVerticalGroup(
+            jPanelCodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCodeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelCode.TabConstraints.tabTitle"), jPanelCode); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +648,7 @@ NotifyDescriptor nd;
 
             File projectToBeOpenedFile = projectChooser.getSelectedFile();
             if (projectToBeOpenedFile == null) {
-                MySession.advertencia(NbBundle.getMessage(ReportSmartTopComponent.class, "Mensaje_ProyectoNoSeleccionado"));
+                MySession.advertencia("Seleccione un proyecto web");
                 jTextFieldNameOfProject.setText("");
                 return;
             }
@@ -388,7 +656,7 @@ NotifyDescriptor nd;
 
             Project project = ProjectManager.getDefault().findProject(projectToBeOpened);
             if (project == null) {
-                MySession.advertencia(NbBundle.getMessage(ReportSmartTopComponent.class, "Mensaje_ProyectoNoSeleccionado"));
+                MySession.advertencia("Seleccione un proyecto Web");
                 jTextFieldNameOfProject.setText("");
                 return;
 
@@ -398,7 +666,7 @@ NotifyDescriptor nd;
             OpenProjects.getDefault().open(array, false);
             /*
             *
-            */
+             */
             String lnombre_proyecto = project.getProjectDirectory().getName();
 
             jTextFieldNameOfProject.setText(lnombre_proyecto);
@@ -407,7 +675,7 @@ NotifyDescriptor nd;
             ProyectoInformacion projectInformation = new ProyectoInformacion();
             if (projectInformation.getInformation(project)) {
                 if (!MySession.isEsProyectoWeb()) {
-                    nd = new NotifyDescriptor.Message(NbBundle.getMessage(ReportSmartTopComponent.class, "Mensaje_ProyectoNoSeleccionado"), NotifyDescriptor.Message.INFORMATION_MESSAGE);
+                    nd = new NotifyDescriptor.Message("Seleccione un proyecto Web");
                     DialogDisplayer.getDefault().notify(nd);
                     jTextFieldNameOfProject.setText("");
                     return;
@@ -416,16 +684,114 @@ NotifyDescriptor nd;
             }
 
         } catch (Exception ex) {
-            MySession.error("Error"+ex.toString());
+            MySession.error("Error" + ex.toString());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
-        MySession.setNameOfProject(jTextFieldNameOfPackage.getText());
-        MySession.setNameOfReport(jTextFieldNameOfReport.getText());
-        MySession.setReportShortPath(jTextFieldReportShortPath.getText());
-        MySession.setNameOfPackage(jTextFieldNameOfPackage.getText());
-    }//GEN-LAST:event_jButtonSiguienteActionPerformed
+    private void jButtonGotoPage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGotoPage2ActionPerformed
+        try {
+            entityValid = true;
+            parametersValid = true;
+            jEditorPaneColumnFooter.setText("");
+            jEditorPaneColumnHeader.setText("");
+            jEditorPaneDetails.setText("");
+            jEditorPanePageFooter.setText("");
+            jEditorPanePageHeader.setText("");
+            jEditorPaneSummer.setText("");
+            jEditorPaneTitle.setText("");
+
+            MySession.advertencia("report:" + jTextFieldNameOfReport.getText());
+            MySession.getEntidadList().removeAll(MySession.getEntidadList());
+
+            if (jTextFieldNameOfProject.getText().equals("")) {
+                MySession.error("Seleccione el proyecto web");
+                return;
+            }
+            if (jTextFieldNameOfReport.getText().isEmpty() || jTextFieldNameOfReport.getText().equals("")) {
+                MySession.error("Indique el nombre del reporte");
+                return;
+            }
+            if (jTextFieldNameOfPackage.getText().equals("")) {
+                MySession.error("Indique el nombre del paquete");
+                return;
+            }
+            if (jTextAreaClass.getText().equals("")) {
+                MySession.error("Ingrese la clase a procesar");
+                jTextAreaClass.requestFocus();
+                return;
+            }
+            //
+
+            EntityReader entityReader = new EntityReader();
+            entityReader.readEntity(jTextFieldNameOfReport.getText(), jTextAreaClass.getText());
+            if (MySession.getEntidadList().isEmpty()) {
+                entityValid = false;
+            }
+            if (!entityValid) {
+                MySession.advertencia("La clase no es valida");
+                return;
+            }
+            if (!parametersValid) {
+                MySession.advertencia("Los Parametros no son validos");
+                return;
+            }
+if(!MySession.getAllTablesWithPrimaryKey()){
+                 MySession.advertencia("No hay ningun atributo con llave primaria @Id");
+                return;
+}
+            String endline = "";
+            jComboBoxFields.removeAllItems();
+
+            for (Entidad e : MySession.getEntidadList()) {
+                Integer count = 0;
+                for (Atributos a : e.getAtributosList()) {
+                    count++;
+                    if (count < 5) {
+                        endline = "";
+                    } else {
+                        count = 0;
+                        endline = "\n";
+                    }
+                    String separator = "";
+                    if (!jEditorPaneColumnHeader.getText().equals("")) {
+                        separator = ",";
+                    }
+
+                    jComboBoxFields.addItem(a.getNombre());
+
+                    jEditorPaneColumnHeader.setText(jEditorPaneColumnHeader.getText() + separator + a.getNombre() + endline);
+                    jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + " " + a.getNombre() + endline);
+
+                }
+
+            }
+
+            jEditorPaneTitle.setText(jTextFieldNameOfReport.getText());
+            jEditorPanePageHeader.setText("Fecha: new Date()");
+            jEditorPanePageFooter.setText("Pagina: new Page()");
+
+            //-- parametros
+            readParameters();
+            if (!parametersList.isEmpty()) {
+                for (Parameters p : parametersList) {
+                    jEditorPaneTitle.setText(jEditorPaneTitle.getText() + " " + p.getName());
+                }
+
+            }
+
+            MySession.setNameOfProject(jTextFieldNameOfProject.getText());
+            MySession.setNameOfReport(jTextFieldNameOfReport.getText());
+            MySession.setReportShortPath(jTextFieldReportShortPath.getText());
+            MySession.setNameOfPackage(jTextFieldNameOfPackage.getText());
+            jTabbedPane1.add(jPanelDesign, "Desing");
+            jTabbedPane1.remove(jPanelProyecto);
+            jTabbedPane1.remove(jPanelCode);
+
+        } catch (Exception e) {
+            MySession.error("Error" + e.toString());
+        }
+
+    }//GEN-LAST:event_jButtonGotoPage2ActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         generateNameReport();
@@ -447,42 +813,153 @@ NotifyDescriptor nd;
 
     }//GEN-LAST:event_jTextFieldNameOfReportKeyTyped
 
-    private void jTextAreaDetailsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDetailsKeyPressed
- 
-    }//GEN-LAST:event_jTextAreaDetailsKeyPressed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+// Ponemos el cursor al final del texto
+        jTextPane1.setCaretPosition(jTextPane1.getStyledDocument().getLength());
+
+// insertamos un JButton
+        JButton boton = new JButton("Pulsame");
+        jTextPane1.insertComponent(boton);
+        JPanel p = new JPanel();
+        jTextPane1.insertComponent(p);
+        JComboBox combo;
+        combo = new JComboBox();
+        combo.addItem("uno");
+        combo.addItem("dos");
+        combo.addItem("tres");
+        jTextPane1.insertComponent(combo);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButtonGotoPage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGotoPage1ActionPerformed
+        jTabbedPane1.remove(jPanelDesign);
+        jTabbedPane1.remove(jPanelCode);
+        jTabbedPane1.add(jPanelProyecto, "Project");
+    }//GEN-LAST:event_jButtonGotoPage1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String t = jTextPane1.getText();
+            System.out.println("--->" + t);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        drawTemplate();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButtonGotoPage3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGotoPage3ActionPerformed
+        jTabbedPane1.remove(jPanelDesign);
+        jTabbedPane1.remove(jPanelProyecto);
+        jTabbedPane1.add(jPanelCode, "Code");
+    }//GEN-LAST:event_jButtonGotoPage3ActionPerformed
+
+    private void jButtonGotoPage2From3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGotoPage2From3ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.remove(jPanelCode);
+        jTabbedPane1.remove(jPanelProyecto);
+        jTabbedPane1.add(jPanelDesign, "Design");
+    }//GEN-LAST:event_jButtonGotoPage2From3ActionPerformed
+
+    private void jTextAreaClassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaClassKeyPressed
+        readkeyClass();
+
+    }//GEN-LAST:event_jTextAreaClassKeyPressed
+
+    private void jButtonAddParameterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddParameterActionPerformed
+        // TODO add your handling code here:
+        try {
+             String separator="";
+      if(jEditorPaneTitle.getText().isEmpty() || jEditorPaneTitle.getText().equals("")){
+          separator=",";
+      }
+      if(jEditorPaneTitle.getText().contains(jComboBoxParameters.getSelectedItem().toString())){
+          MySession.advertencia("Ese parametro ya esta en la banda TITLE");
+          return;
+      }
+            jEditorPaneTitle.setText(jEditorPaneTitle.getText() + "  "+jComboBoxParameters.getSelectedItem());
+        } catch (Exception e) {
+            MySession.error("error() "+e.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_jButtonAddParameterActionPerformed
+
+    private void jButtonAddFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFieldActionPerformed
+  try {
+      String separator="";
+      if(jEditorPaneDetails.getText().isEmpty() || jEditorPaneDetails.getText().equals("")){
+          separator=",";
+      }
+      if(jEditorPaneDetails.getText().contains(jComboBoxFields.getSelectedItem().toString())){
+          MySession.advertencia("Ese campo ya esta en la banda Fiedlds");
+          return;
+      }
+            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator+jComboBoxFields.getSelectedItem());
+        } catch (Exception e) {
+            MySession.error("error() "+e.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_jButtonAddFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonAddField;
+    private javax.swing.JButton jButtonAddParameter;
+    private javax.swing.JButton jButtonGotoPage1;
+    private javax.swing.JButton jButtonGotoPage2;
+    private javax.swing.JButton jButtonGotoPage2From3;
+    private javax.swing.JButton jButtonGotoPage3;
     private javax.swing.JButton jButtonRefresh;
-    private javax.swing.JButton jButtonSiguiente;
+    private javax.swing.JComboBox<String> jComboBoxFields;
+    private javax.swing.JComboBox<String> jComboBoxParameters;
+    private javax.swing.JEditorPane jEditorPaneColumnFooter;
+    private javax.swing.JEditorPane jEditorPaneColumnHeader;
+    private javax.swing.JEditorPane jEditorPaneDetails;
+    private javax.swing.JEditorPane jEditorPanePageFooter;
+    private javax.swing.JEditorPane jEditorPanePageHeader;
+    private javax.swing.JEditorPane jEditorPaneSummer;
+    private javax.swing.JEditorPane jEditorPaneTitle;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JPanel jPanelCode;
+    private javax.swing.JPanel jPanelDesign;
+    private javax.swing.JPanel jPanelProyecto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextAreaColumFooter1;
-    private javax.swing.JTextArea jTextAreaColumHeader;
-    private static javax.swing.JTextArea jTextAreaDetails;
-    private javax.swing.JTextArea jTextAreaPageFooter1;
-    private javax.swing.JTextArea jTextAreaPageHeader;
-    private javax.swing.JTextArea jTextAreaSummary;
-    private javax.swing.JTextArea jTextAreaTitle;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextArea jTextAreaClass;
+    private javax.swing.JTextArea jTextAreaParameters;
     private javax.swing.JTextField jTextFieldNameOfPackage;
     private javax.swing.JTextField jTextFieldNameOfProject;
     private javax.swing.JTextField jTextFieldNameOfReport;
     private javax.swing.JTextField jTextFieldReportShortPath;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
@@ -505,16 +982,127 @@ NotifyDescriptor nd;
         String version = p.getProperty("version");
         // TODO read your settings according to their version
     }
-    
-      private void generateNameReport(){
+
+    private void generateNameReport() {
         try {
-               jTextFieldReportShortPath.setText(MySession.getReportShortPath()+jTextFieldNameOfPackage.getText()+MySession.getFileSeparator()+jTextFieldNameOfReport.getText()+".jrxml");
-               MySession.setNameOfReport(jTextFieldNameOfReport.getText());
-               MySession.setNameOfPackage(jTextFieldNameOfPackage.getText());
+            jTextFieldReportShortPath.setText(MySession.getReportShortPath() + jTextFieldNameOfPackage.getText() + MySession.getFileSeparator() + jTextFieldNameOfReport.getText() + ".jrxml");
+            MySession.setNameOfReport(jTextFieldNameOfReport.getText());
+            MySession.setNameOfPackage(jTextFieldNameOfPackage.getText());
         } catch (Exception e) {
-               MySession.error("Error"+e.getLocalizedMessage());
+            MySession.error("Error" + e.getLocalizedMessage());
         }
     }
-      
-    
+
+    private void drawEditor() {
+        try {
+            // Atributos para la frase, en negrita
+            SimpleAttributeSet attrs = new SimpleAttributeSet();
+            StyleConstants.setBold(attrs, true);
+// Se inserta
+            jTextPane1.getStyledDocument().insertString(jTextPane1.getStyledDocument().getLength(), jEditorPaneSummer.getText(), attrs);
+        } catch (Exception e) {
+            MySession.error("Error" + e.getLocalizedMessage());
+        }
+    }
+
+    private void drawTemplate() {
+        try {
+            String template = " <?xml version=\"1.0\" encoding=\"UTF-8\"?> \n\n"
+                    + "<jasperReport>\n\n"
+                    + "<background>\n\n"
+                    + "     <band splitType=\"Stretch\"/>\n\n"
+                    + "</background>\n\n"
+                    + "<title>\n\n"
+                    + "<band height=\"79\" splitType=\"Stretch\"/>\n\n"
+                    + "</title>\n\n"
+                    + "<pageHeader>\n\n"
+                    + "<band height=\"35\" splitType=\"Stretch\"/>\n\n"
+                    + "</pageHeader>\n\n"
+                    + "<columnHeader>\n\n"
+                    + "<band height=\"61\" splitType=\"Stretch\"/>\n\n"
+                    + "</columnHeader>\n\n"
+                    + "<detail>\n\n"
+                    + "<band height=\"125\" splitType=\"Stretch\"/>\n\n"
+                    + "</detail>\n\n"
+                    + "<columnFooter>\n\n"
+                    + "<band height=\"45\" splitType=\"Stretch\"/>\n\n"
+                    + "</columnFooter>\n\n"
+                    + "<pageFooter>\n\n"
+                    + "<band height=\"54\" splitType=\"Stretch\"/>\n\n"
+                    + "</pageFooter>\n\n"
+                    + "<summary>\n\n"
+                    + "<band height=\"42\" splitType=\"Stretch\"/>\n\n"
+                    + "</summary>\n\n"
+                    + "</ jasperReport >\n\n";
+            jTextPane1.removeAll();
+            SimpleAttributeSet attrs = new SimpleAttributeSet();
+            StyleConstants.setBold(attrs, true);
+// Se inserta
+            jTextPane1.getStyledDocument().insertString(
+                    jTextPane1.getStyledDocument().getLength(), template, attrs);
+
+        } catch (Exception e) {
+            MySession.error("drawTemplate()" + e.getLocalizedMessage());
+        }
+
+    }
+
+    private void readkeyClass() {
+        try {
+            for (String line : jTextAreaClass.getText().split("\\n")) {
+                if (line.contains("public class")) {
+                    String x = line.replace("public class", "");
+                    x = x.replace("{", "").toLowerCase();
+                    jTextFieldNameOfPackage.setText(x);
+                    if (jTextFieldNameOfReport.getText().isEmpty() || jTextFieldNameOfReport.getText().equals("")) {
+                        jTextFieldNameOfReport.setText(x);
+                    }
+                    break;
+                }
+
+            }
+            generateNameReport();
+        } catch (Exception e) {
+            MySession.error("readkeyClass()" + e.getLocalizedMessage());
+        }
+
+    }
+
+    /**
+     * lee los parametros
+     */
+    private void readParameters() {
+        try {
+                parametersValid=false;
+            jComboBoxParameters.removeAllItems();
+            parametersList = new ArrayList<>();
+            if (jTextAreaParameters.getText().isEmpty()) {
+                parametersValid=true;
+                return;
+            }
+            for (String line : jTextAreaParameters.getText().split("\\n")) {
+                String s = line;
+                if (s.contains("private")) {
+                    s = s.replace("private", "");
+                }
+
+                s = s.replace(";", "");
+                s = s.trim();
+                String[] splited = s.split("\\s");
+//                atributos.setTipo(splited[0]);
+                String name = splited[1];
+                String type = Utilidades.mysqlToJava(splited[0]);
+                Parameters parameters = new Parameters(name, type);
+                parametersList.add(parameters);
+                jComboBoxParameters.addItem(name);
+            }
+            MySession.setParametersList(parametersList);
+                parametersValid=true;
+        } catch (Exception e) {
+            MySession.error("readkeyClass()" + e.getLocalizedMessage());
+                parametersValid=false;
+        }
+
+    }
+
 }

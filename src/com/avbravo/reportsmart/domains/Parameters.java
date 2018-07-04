@@ -12,20 +12,16 @@ package com.avbravo.reportsmart.domains;
 public class Parameters {
     private String name;
     private String type;
-    private String label;
-    private Integer orden;
+
 
     public Parameters() {
     }
 
-    public Parameters(String name, String type, String label, Integer orden) {
+    public Parameters(String name, String type) {
         this.name = name;
         this.type = type;
-        this.label = label;
-        this.orden = orden;
     }
 
-    
     
     
     public String getName() {
@@ -44,21 +40,6 @@ public class Parameters {
         this.type = type;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public Integer getOrden() {
-        return orden;
-    }
-
-    public void setOrden(Integer orden) {
-        this.orden = orden;
-    }
     
     
     
