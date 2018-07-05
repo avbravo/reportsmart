@@ -50,8 +50,8 @@ public class ProyectoInformacion extends CookieAction {
                      */
                     MySession.setSrcJava(MySession.getSrc() + MySession.getFileSeparator() + "main" + MySession.getFileSeparator() + "java");
                     String lweb = MySession.getSrc() + MySession.getFileSeparator() + "main" + MySession.getFileSeparator() + "webapp";
-MySession.setResourcesPath("");
-MySession.setReportPath("");
+                    MySession.setResourcesPath("");
+                    MySession.setReportPath("");
                     File file = new File(lweb);
                     if (file.exists()) {
                         //indica que es web
@@ -62,35 +62,35 @@ MySession.setReportPath("");
 
                         //Folder resources
                         String resourcesPath = lweb + MySession.getFileSeparator() + "resources";
-                         MySession.setResourcesPath(resourcesPath);
+                        MySession.setResourcesPath(resourcesPath);
                         File fileResources = new File(resourcesPath);
                         if (!fileResources.isDirectory()) {
                             //No existe el directorio hay que crearlo
                             if (fileResources.mkdir()) {
                                 nd = new NotifyDescriptor.Message("No se puede crear la carpeta resources", NotifyDescriptor.Message.ERROR_MESSAGE);
                                 DialogDisplayer.getDefault().notify(nd);
- MySession.setResourcesPath("");
+                                MySession.setResourcesPath("");
                                 return false;
                             }
-                           
+
                         }
-                        
+
                         String reportPath = resourcesPath + MySession.getFileSeparator() + "reportes";
-                        
+
                         MySession.setReportPath(reportPath);
-                        
-                        MySession.setReportShortPath("resources"+MySession.getFileSeparator()+"reportes"+MySession.getFileSeparator());
-                        
-                         File fileReportes = new File(resourcesPath);
+
+                        MySession.setReportShortPath("resources" + MySession.getFileSeparator() + "reportes" + MySession.getFileSeparator());
+
+                        File fileReportes = new File(reportPath);
                         if (!fileReportes.isDirectory()) {
                             //No existe el directorio hay que crearlo
                             if (fileReportes.mkdir()) {
                                 nd = new NotifyDescriptor.Message("No se puede crear la carpeta reportes", NotifyDescriptor.Message.ERROR_MESSAGE);
                                 DialogDisplayer.getDefault().notify(nd);
-               MySession.setReportPath("");
+                                MySession.setReportPath("");
                                 return false;
                             }
-             
+
                         }
 
                     }

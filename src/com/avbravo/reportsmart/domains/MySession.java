@@ -47,7 +47,16 @@ static Boolean allTablesWithPrimaryKey = true;
     static List<String> mensajesInformacion = new ArrayList<>();
 static  List<EntidadPatron> entidadPatronList = new ArrayList<>();
 
+  public static String compilarReporteaJasper = "";
 
+    /**
+     * Date GMT+2
+     */
+   static String timeZone = "";
+    static String patternDate = "dd/MM/yyyy";
+    static String patternDateTime = "HH:mm dd/MM/yyyy";
+    
+    
     public static Boolean getAllTablesWithPrimaryKey() {
         return allTablesWithPrimaryKey;
     }
@@ -56,6 +65,39 @@ static  List<EntidadPatron> entidadPatronList = new ArrayList<>();
         MySession.allTablesWithPrimaryKey = allTablesWithPrimaryKey;
     }
 
+    public static String getCompilarReporteaJasper() {
+        return compilarReporteaJasper;
+    }
+
+    public static void setCompilarReporteaJasper(String compilarReporteaJasper) {
+        MySession.compilarReporteaJasper = compilarReporteaJasper;
+    }
+
+    public static String getTimeZone() {
+        return timeZone;
+    }
+
+    public static void setTimeZone(String timeZone) {
+        MySession.timeZone = timeZone;
+    }
+
+    public static String getPatternDate() {
+        return patternDate;
+    }
+
+    public static void setPatternDate(String patternDate) {
+        MySession.patternDate = patternDate;
+    }
+
+    public static String getPatternDateTime() {
+        return patternDateTime;
+    }
+
+    public static void setPatternDateTime(String patternDateTime) {
+        MySession.patternDateTime = patternDateTime;
+    }
+
+    
 
 
 

@@ -9,6 +9,7 @@ import com.avbravo.reportsmart.domains.EntityReader;
 import com.avbravo.reportsmart.domains.MySession;
 import com.avbravo.reportsmart.domains.Parameters;
 import com.avbravo.reportsmart.domains.Utilidades;
+import com.avbravo.reportsmart.jasper.JasperAllGenerador;
 import com.avbravo.reportsmart.projects.ProyectoInformacion;
 import com.avbravo.reportsmarts.beans.Atributos;
 import com.avbravo.reportsmarts.beans.Entidad;
@@ -105,7 +106,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreaClass = new javax.swing.JTextArea();
+        jTextAreaEntity = new javax.swing.JTextArea();
         jButtonGotoPage2 = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextAreaParameters = new javax.swing.JTextArea();
@@ -135,6 +136,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         jButtonGotoPage3 = new javax.swing.JButton();
         jButtonAddParameter = new javax.swing.JButton();
         jButtonAddField = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanelCode = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -210,7 +212,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                                 .addComponent(jTextFieldNameOfReport, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)))
-                        .addGap(0, 374, Short.MAX_VALUE)))
+                        .addGap(0, 366, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -271,15 +273,15 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextAreaClass.setColumns(20);
-        jTextAreaClass.setRows(5);
-        jTextAreaClass.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaClass.toolTipText")); // NOI18N
-        jTextAreaClass.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextAreaEntity.setColumns(20);
+        jTextAreaEntity.setRows(5);
+        jTextAreaEntity.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaEntity.toolTipText")); // NOI18N
+        jTextAreaEntity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextAreaClassKeyPressed(evt);
+                jTextAreaEntityKeyPressed(evt);
             }
         });
-        jScrollPane2.setViewportView(jTextAreaClass);
+        jScrollPane2.setViewportView(jTextAreaEntity);
 
         jButtonGotoPage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/next_1.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage2, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.text")); // NOI18N
@@ -392,8 +394,14 @@ public final class ReportSmartTopComponent extends TopComponent {
 
         jPanel7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/tools32.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/compile.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton1.text")); // NOI18N
+        jButton1.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton1.toolTipText")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButtonGotoPage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/back.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage1.text")); // NOI18N
@@ -429,6 +437,15 @@ public final class ReportSmartTopComponent extends TopComponent {
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/saverun.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton4, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton4.text")); // NOI18N
+        jButton4.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton4.toolTipText")); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -441,9 +458,10 @@ public final class ReportSmartTopComponent extends TopComponent {
                     .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4)
                     .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonGotoPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,12 +474,15 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addComponent(jComboBoxFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonGotoPage1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonGotoPage3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGotoPage3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -478,8 +499,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                     .addComponent(jScrollPane11)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,25 +516,27 @@ public final class ReportSmartTopComponent extends TopComponent {
                         .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(58, 58, 58)
                         .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 395, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelDesignLayout = new javax.swing.GroupLayout(jPanelDesign);
         jPanelDesign.setLayout(jPanelDesignLayout);
         jPanelDesignLayout.setHorizontalGroup(
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 745, Short.MAX_VALUE)
+            .addGroup(jPanelDesignLayout.createSequentialGroup()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         jPanelDesignLayout.setVerticalGroup(
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDesignLayout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelDesign.TabConstraints.tabTitle"), jPanelDesign); // NOI18N
@@ -621,7 +643,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelCode.TabConstraints.tabTitle"), jPanelCode); // NOI18N
@@ -630,9 +652,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,7 +720,6 @@ public final class ReportSmartTopComponent extends TopComponent {
             jEditorPaneSummer.setText("");
             jEditorPaneTitle.setText("");
 
-            MySession.advertencia("report:" + jTextFieldNameOfReport.getText());
             MySession.getEntidadList().removeAll(MySession.getEntidadList());
 
             if (jTextFieldNameOfProject.getText().equals("")) {
@@ -715,15 +734,15 @@ public final class ReportSmartTopComponent extends TopComponent {
                 MySession.error("Indique el nombre del paquete");
                 return;
             }
-            if (jTextAreaClass.getText().equals("")) {
+            if (jTextAreaEntity.getText().equals("")) {
                 MySession.error("Ingrese la clase a procesar");
-                jTextAreaClass.requestFocus();
+                jTextAreaEntity.requestFocus();
                 return;
             }
             //
 
             EntityReader entityReader = new EntityReader();
-            entityReader.readEntity(jTextFieldNameOfReport.getText(), jTextAreaClass.getText());
+            entityReader.readEntity(jTextFieldNameOfReport.getText(), jTextAreaEntity.getText());
             if (MySession.getEntidadList().isEmpty()) {
                 entityValid = false;
             }
@@ -735,10 +754,10 @@ public final class ReportSmartTopComponent extends TopComponent {
                 MySession.advertencia("Los Parametros no son validos");
                 return;
             }
-if(!MySession.getAllTablesWithPrimaryKey()){
-                 MySession.advertencia("No hay ningun atributo con llave primaria @Id");
+            if (!MySession.getAllTablesWithPrimaryKey()) {
+                MySession.advertencia("No hay ningun atributo con llave primaria @Id");
                 return;
-}
+            }
             String endline = "";
             jComboBoxFields.removeAllItems();
 
@@ -760,15 +779,15 @@ if(!MySession.getAllTablesWithPrimaryKey()){
                     jComboBoxFields.addItem(a.getNombre());
 
                     jEditorPaneColumnHeader.setText(jEditorPaneColumnHeader.getText() + separator + a.getNombre() + endline);
-                    jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + " " + a.getNombre() + endline);
+                    jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + " F_" + a.getNombre() + endline);
 
                 }
 
             }
 
             jEditorPaneTitle.setText(jTextFieldNameOfReport.getText());
-            jEditorPanePageHeader.setText("Fecha: new Date()");
-            jEditorPanePageFooter.setText("Pagina: new Page()");
+            jEditorPanePageHeader.setText("Fecha: _Date()");
+            jEditorPanePageFooter.setText("Pagina: _numberPage()");
 
             //-- parametros
             readParameters();
@@ -864,48 +883,64 @@ if(!MySession.getAllTablesWithPrimaryKey()){
         jTabbedPane1.add(jPanelDesign, "Design");
     }//GEN-LAST:event_jButtonGotoPage2From3ActionPerformed
 
-    private void jTextAreaClassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaClassKeyPressed
+    private void jTextAreaEntityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaEntityKeyPressed
         readkeyClass();
 
-    }//GEN-LAST:event_jTextAreaClassKeyPressed
+    }//GEN-LAST:event_jTextAreaEntityKeyPressed
 
     private void jButtonAddParameterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddParameterActionPerformed
         // TODO add your handling code here:
         try {
-             String separator="";
-      if(jEditorPaneTitle.getText().isEmpty() || jEditorPaneTitle.getText().equals("")){
-          separator=",";
-      }
-      if(jEditorPaneTitle.getText().contains(jComboBoxParameters.getSelectedItem().toString())){
-          MySession.advertencia("Ese parametro ya esta en la banda TITLE");
-          return;
-      }
-            jEditorPaneTitle.setText(jEditorPaneTitle.getText() + "  "+jComboBoxParameters.getSelectedItem());
+            String separator = "";
+            if (jEditorPaneTitle.getText().isEmpty() || jEditorPaneTitle.getText().equals("")) {
+                separator = ",";
+            }
+            if (jEditorPaneTitle.getText().contains(jComboBoxParameters.getSelectedItem().toString())) {
+                MySession.advertencia("Ese parametro ya esta en la banda TITLE");
+                return;
+            }
+            jEditorPaneTitle.setText(jEditorPaneTitle.getText() + "  " + jComboBoxParameters.getSelectedItem());
         } catch (Exception e) {
-            MySession.error("error() "+e.getLocalizedMessage());
+            MySession.error("error() " + e.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButtonAddParameterActionPerformed
 
     private void jButtonAddFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFieldActionPerformed
-  try {
-      String separator="";
-      if(jEditorPaneDetails.getText().isEmpty() || jEditorPaneDetails.getText().equals("")){
-          separator=",";
-      }
-      if(jEditorPaneDetails.getText().contains(jComboBoxFields.getSelectedItem().toString())){
-          MySession.advertencia("Ese campo ya esta en la banda Fiedlds");
-          return;
-      }
-            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator+jComboBoxFields.getSelectedItem());
+        try {
+            String separator = "";
+            if (jEditorPaneDetails.getText().isEmpty() || jEditorPaneDetails.getText().equals("")) {
+                separator = ",";
+            }
+            if (jEditorPaneDetails.getText().contains(jComboBoxFields.getSelectedItem().toString())) {
+                MySession.advertencia("Ese campo ya esta en la banda Fiedls");
+                return;
+            }
+            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + jComboBoxFields.getSelectedItem());
         } catch (Exception e) {
-            MySession.error("error() "+e.getLocalizedMessage());
+            MySession.error("error() " + e.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButtonAddFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MySession.setCompilarReporteaJasper("no");
+        JasperAllGenerador jasperAllGenerador = new JasperAllGenerador();
+        jasperAllGenerador.generar();
+        MySession.informacion("Se compilo el reporte");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        MySession.setCompilarReporteaJasper("si");
+        JasperAllGenerador jasperAllGenerador = new JasperAllGenerador();
+        jasperAllGenerador.generar();
+        MySession.informacion("Se genero y se compilo el reporte");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonAddField;
@@ -953,7 +988,7 @@ if(!MySession.getAllTablesWithPrimaryKey()){
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextArea jTextAreaClass;
+    private javax.swing.JTextArea jTextAreaEntity;
     private javax.swing.JTextArea jTextAreaParameters;
     private javax.swing.JTextField jTextFieldNameOfPackage;
     private javax.swing.JTextField jTextFieldNameOfProject;
@@ -1049,18 +1084,97 @@ if(!MySession.getAllTablesWithPrimaryKey()){
 
     private void readkeyClass() {
         try {
-            for (String line : jTextAreaClass.getText().split("\\n")) {
-                if (line.contains("public class")) {
-                    String x = line.replace("public class", "");
-                    x = x.replace("{", "").toLowerCase();
-                    jTextFieldNameOfPackage.setText(x);
-                    if (jTextFieldNameOfReport.getText().isEmpty() || jTextFieldNameOfReport.getText().equals("")) {
-                        jTextFieldNameOfReport.setText(x);
+
+            int lines = jTextAreaEntity.getLineCount();
+            for (int i = 0; i < lines; i++) {
+                int start = jTextAreaEntity.getLineStartOffset(i);
+                int end = jTextAreaEntity.getLineEndOffset(i);
+                // Implement method processLine
+                String line = jTextAreaEntity.getText(start, end - start);
+                System.out.println("texto " + line);
+                if (line.equals("pub")) {
+                    jTextAreaEntity.setText(jTextAreaEntity.getText() + "lic class ");
+                } else {
+                    if (line.contains("public class")) {
+                        String x = line.replace("public class", "");
+                        x = x.replace("{", "").toLowerCase().trim();
+                        if (!jTextAreaEntity.getText().contains("{")) {
+                            jTextFieldNameOfPackage.setText(x);
+                        }
+                        if (!jTextAreaEntity.getText().contains("{")) {
+                            jTextFieldNameOfReport.setText(x);
+                        }
+                        if (!jTextAreaEntity.getText().contains("@Id") && jTextAreaEntity.getText().contains("{")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "\n@Id");
+                        }
+                    }else{
+                        line=line.trim();
+                        System.out.println("line: " + line);
+                        if (line.equals("pub")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "lic class ");
+                        }
+                        if (line.equals("pr") ) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "ivate ");
+                        }
+                        if (line.equals("private S") || line.equals("private s")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "tring ");
+                        }
+
+                        if (line.equals("private I") || line.equals("private i")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "nteger ");
+                        }
+                        if (line.equals("private Do") || line.equals("private do")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "uble ");
+                        }
+                        if (line.equals("private Da") || line.equals("private da")) {
+                            jTextAreaEntity.setText(jTextAreaEntity.getText() + "te ");
+                        }
                     }
-                    break;
                 }
 
             }
+
+//            for (String line : jTextAreaEntity.getText().split("\\n")) {
+//                if (line.contains("public class")) {
+//                    String x = line.replace("public class", "");
+//                    x = x.replace("{", "").toLowerCase().trim();
+//                    if( !jTextAreaEntity.getText().contains("{")){
+//                         jTextFieldNameOfPackage.setText(x);
+//                    }
+//                   
+//                    if (!jTextAreaEntity.getText().contains("{")) {
+//                        jTextFieldNameOfReport.setText(x);
+//                    }
+//                    if(!jTextAreaEntity.getText().contains("@Id") && jTextAreaEntity.getText().contains("{")){
+//                         jTextAreaEntity.setText(jTextAreaEntity.getText()+"\n@Id"); 
+//                    }
+//
+//                  
+//                    break;
+//                }else{
+//                    line=line.trim();
+//                    System.out.println("line: "+line);
+//                    if(line.equals("pub")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"lic class ");
+//                    }
+//                    if(line.equals("priv")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"ate ");
+//                    }
+//                    if(line.equals("private St") || line.equals("private st")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"ring ");
+//                    }
+//                  
+//                    if(line.equals("private In") || line.equals("private in")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"teger ");
+//                    }
+//                    if(line.equals("private Do") || line.equals("private do")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"uble ");
+//                    }
+//                    if(line.equals("private Da") || line.equals("private da")){
+//                        jTextAreaEntity.setText(jTextAreaEntity.getText()+"te ");
+//                    }
+//                }
+//            }
             generateNameReport();
         } catch (Exception e) {
             MySession.error("readkeyClass()" + e.getLocalizedMessage());
@@ -1073,11 +1187,11 @@ if(!MySession.getAllTablesWithPrimaryKey()){
      */
     private void readParameters() {
         try {
-                parametersValid=false;
+            parametersValid = false;
             jComboBoxParameters.removeAllItems();
             parametersList = new ArrayList<>();
             if (jTextAreaParameters.getText().isEmpty()) {
-                parametersValid=true;
+                parametersValid = true;
                 return;
             }
             for (String line : jTextAreaParameters.getText().split("\\n")) {
@@ -1097,10 +1211,10 @@ if(!MySession.getAllTablesWithPrimaryKey()){
                 jComboBoxParameters.addItem(name);
             }
             MySession.setParametersList(parametersList);
-                parametersValid=true;
+            parametersValid = true;
         } catch (Exception e) {
             MySession.error("readkeyClass()" + e.getLocalizedMessage());
-                parametersValid=false;
+            parametersValid = false;
         }
 
     }
