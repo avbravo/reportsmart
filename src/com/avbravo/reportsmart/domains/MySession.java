@@ -48,6 +48,15 @@ static Boolean allTablesWithPrimaryKey = true;
 static  List<EntidadPatron> entidadPatronList = new ArrayList<>();
 
   public static String compilarReporteaJasper = "";
+  
+  static String titleBand="";
+  static String pageHeaderBand="";
+  static String columnHeaderBand="";
+  static String detailBand="";
+  static String colummFooterBand="";
+  static String pageFooterBand="";
+  static String summaryBand="";
+  
 
     /**
      * Date GMT+2
@@ -55,6 +64,65 @@ static  List<EntidadPatron> entidadPatronList = new ArrayList<>();
    static String timeZone = "";
     static String patternDate = "dd/MM/yyyy";
     static String patternDateTime = "HH:mm dd/MM/yyyy";
+
+    public static String getTitleBand() {
+        return titleBand;
+    }
+
+    public static void setTitleBand(String titleBand) {
+        MySession.titleBand = titleBand;
+    }
+
+    public static String getPageHeaderBand() {
+        return pageHeaderBand;
+    }
+
+    public static void setPageHeaderBand(String pageHeaderBand) {
+        MySession.pageHeaderBand = pageHeaderBand;
+    }
+
+    public static String getColumnHeaderBand() {
+        return columnHeaderBand;
+    }
+
+    public static void setColumnHeaderBand(String columnHeaderBand) {
+        MySession.columnHeaderBand = columnHeaderBand;
+    }
+
+    public static String getDetailBand() {
+        return detailBand;
+    }
+
+    public static void setDetailBand(String detailBand) {
+        MySession.detailBand = detailBand;
+    }
+
+    public static String getColummFooterBand() {
+        return colummFooterBand;
+    }
+
+    public static void setColummFooterBand(String colummFooterBand) {
+        MySession.colummFooterBand = colummFooterBand;
+    }
+
+    public static String getPageFooterBand() {
+        return pageFooterBand;
+    }
+
+    public static void setPageFooterBand(String pageFooterBand) {
+        MySession.pageFooterBand = pageFooterBand;
+    }
+
+    public static String getSummaryBand() {
+        return summaryBand;
+    }
+
+    public static void setSummaryBand(String summaryBand) {
+        MySession.summaryBand = summaryBand;
+    }
+    
+    
+    
     
     
     public static Boolean getAllTablesWithPrimaryKey() {
