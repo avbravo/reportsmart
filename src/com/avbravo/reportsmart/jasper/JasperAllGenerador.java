@@ -8,8 +8,8 @@ package com.avbravo.reportsmart.jasper;
 
 import com.avbravo.reportsmart.domains.MySession;
 import com.avbravo.reportsmart.domains.Utilidades;
-import com.avbravo.reportsmarts.beans.Atributos;
-import com.avbravo.reportsmarts.beans.Entidad;
+import com.avbravo.reportsmart.beans.Atributos;
+import com.avbravo.reportsmart.beans.Entidad;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;

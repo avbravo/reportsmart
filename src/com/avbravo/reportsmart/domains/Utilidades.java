@@ -7,8 +7,8 @@ package com.avbravo.reportsmart.domains;
 
 import static com.avbravo.reportsmart.domains.EntityReader.DEFAULT_CHARSET;
 import com.avbravo.reportsmart.rules.EntidadPatron;
-import com.avbravo.reportsmarts.beans.Atributos;
-import com.avbravo.reportsmarts.beans.Entidad;
+import com.avbravo.reportsmart.beans.Atributos;
+import com.avbravo.reportsmart.beans.Entidad;
 
 
 import java.io.BufferedReader;

@@ -7,10 +7,10 @@ package com.avbravo.reportsmart.domains;
 // <editor-fold defaultstate="collapsed" desc="import">
 
 
-import com.avbravo.reportsmarts.beans.Atributos;
-import com.avbravo.reportsmarts.beans.Embedded;
-import com.avbravo.reportsmarts.beans.Entidad;
-import com.avbravo.reportsmarts.beans.Referenced;
+import com.avbravo.reportsmart.beans.Atributos;
+import com.avbravo.reportsmart.beans.Embedded;
+import com.avbravo.reportsmart.beans.Entidad;
+import com.avbravo.reportsmart.beans.Referenced;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.nio.file.Files;

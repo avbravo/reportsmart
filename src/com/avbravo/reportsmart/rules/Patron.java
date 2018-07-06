@@ -5,7 +5,7 @@
  */
 package com.avbravo.reportsmart.rules;
 
-import com.avbravo.reportsmarts.beans.Entidad;
+import com.avbravo.reportsmart.beans.Entidad;
 
 /**
  *

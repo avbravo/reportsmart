@@ -5,7 +5,7 @@
 package com.avbravo.reportsmart.domains;
 
 import com.avbravo.reportsmart.rules.EntidadPatron;
-import com.avbravo.reportsmarts.beans.Entidad;
+import com.avbravo.reportsmart.beans.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

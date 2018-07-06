@@ -5,7 +5,7 @@
  */
 package com.avbravo.reportsmart.rules;
 
-import com.avbravo.reportsmarts.beans.Entidad;
+import com.avbravo.reportsmart.beans.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 

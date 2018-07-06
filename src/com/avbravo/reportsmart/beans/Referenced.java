@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.avbravo.reportsmarts.beans;
+package com.avbravo.reportsmart.beans;
 
 /**
  *
  * @author avbravo
  */
-public class Embedded {
-  private  String type ;
+public class Referenced {
+ private  String type ;
  private String field ;
  private Boolean esList;
-
     public String getType() {
         return type;
     }
@@ -38,7 +37,12 @@ public class Embedded {
         this.esList = esList;
     }
 
-    public Embedded() {
+
+    public Referenced() {
     }
-  
+
+ 
+ 
+ 
+ 
 }
