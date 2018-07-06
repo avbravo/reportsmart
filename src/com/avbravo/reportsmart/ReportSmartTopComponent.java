@@ -16,16 +16,17 @@ import com.avbravo.reportsmarts.beans.Entidad;
 import java.awt.GridBagConstraints;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
+import javax.swing.JTree;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.api.project.ui.OpenProjects;
@@ -70,6 +71,17 @@ public final class ReportSmartTopComponent extends TopComponent {
     Boolean entityValid = false;
     Boolean parametersValid = false;
     List<Parameters> parametersList = new ArrayList<>();
+//    DefaultMutableTreeNode root = new DefaultMutableTreeNode("Report");
+//    DefaultMutableTreeNode fieldNode = new DefaultMutableTreeNode("Field");
+//    DefaultMutableTreeNode parametersNode = new DefaultMutableTreeNode("Parameters");
+    DefaultMutableTreeNode root ;
+    DefaultMutableTreeNode fieldNode;
+    DefaultMutableTreeNode parametersNode ;
+    DefaultTreeModel modelo;
+
+    Boolean moveField = false;
+    Boolean moveParameters = false;
+    String nameOfFieldOrParameters = "";
 
     public ReportSmartTopComponent() {
         initComponents();
@@ -79,6 +91,17 @@ public final class ReportSmartTopComponent extends TopComponent {
         parametersValid = false;
         setName(Bundle.CTL_ReportSmartTopComponent());
         setToolTipText(Bundle.HINT_ReportSmartTopComponent());
+        
+       root = new DefaultMutableTreeNode("Report");
+ fieldNode = new DefaultMutableTreeNode("Field");
+   parametersNode = new DefaultMutableTreeNode("Parameters");
+        
+        
+        modelo = new DefaultTreeModel(root);
+        jTree1.setModel(modelo);
+
+        modelo.insertNodeInto(fieldNode, root, 0);
+        modelo.insertNodeInto(parametersNode, root, 1);
 
     }
 
@@ -137,6 +160,12 @@ public final class ReportSmartTopComponent extends TopComponent {
         jButtonAddParameter = new javax.swing.JButton();
         jButtonAddField = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jButtonAddParameter1 = new javax.swing.JButton();
+        jLabelSelected = new javax.swing.JLabel();
+        jLabelTest = new javax.swing.JLabel();
         jPanelCode = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -157,8 +186,8 @@ public final class ReportSmartTopComponent extends TopComponent {
         jButton7 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jEditorPaneNode = new javax.swing.JEditorPane();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel5.border.title"))); // NOI18N
 
@@ -326,8 +355,8 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -446,42 +475,94 @@ public final class ReportSmartTopComponent extends TopComponent {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Details", "Title", "Page Header", "Column Header", "Column Footer", "Page Footer", "Summary" }));
+
+        jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jTree1ValueChanged(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTree1);
+
+        jButtonAddParameter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/add.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddParameter1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonAddParameter1.text")); // NOI18N
+        jButtonAddParameter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddParameter1ActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelSelected, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabelSelected.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabelTest, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabelTest.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBoxParameters, 0, 130, Short.MAX_VALUE)
-                        .addComponent(jComboBoxFields, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGotoPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButtonGotoPage3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabelTest, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 27, Short.MAX_VALUE))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxParameters, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxFields, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAddParameter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4)
+                                    .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddParameter1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addComponent(jComboBoxParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jComboBoxFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonGotoPage1))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonGotoPage1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonGotoPage3)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonGotoPage3)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabelSelected)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelTest)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -530,7 +611,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDesignLayout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
         jPanelDesignLayout.setVerticalGroup(
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,28 +766,28 @@ public final class ReportSmartTopComponent extends TopComponent {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        jScrollPane4.setViewportView(jTree1);
+        jScrollPane5.setViewportView(jEditorPaneNode);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addContainerGap(37, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxDateTitle)
@@ -717,14 +798,9 @@ public final class ReportSmartTopComponent extends TopComponent {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxDateTimeTitle))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxDateTimeTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -732,9 +808,13 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxDateTitle))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxDateTitle, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)))
                 .addContainerGap())
         );
 
@@ -745,7 +825,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -861,7 +941,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 MySession.advertencia("Ese campo ya esta en la banda Fields");
                 return;
             }
-            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator +"F_"+jComboBoxFields.getSelectedItem());
+            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + "F_" + jComboBoxFields.getSelectedItem());
         } catch (Exception e) {
             MySession.error("error() " + e.getLocalizedMessage());
         }
@@ -877,7 +957,7 @@ public final class ReportSmartTopComponent extends TopComponent {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         saveReportAndCompile();
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextAreaParametersKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaParametersKeyPressed
@@ -915,7 +995,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             OpenProjects.getDefault().open(array, false);
             /*
             *
-            */
+             */
             String lnombre_proyecto = project.getProjectDirectory().getName();
 
             jTextFieldNameOfProject.setText(lnombre_proyecto);
@@ -959,6 +1039,17 @@ public final class ReportSmartTopComponent extends TopComponent {
 
     private void jButtonGotoPage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGotoPage2ActionPerformed
         try {
+             root = new DefaultMutableTreeNode("Report");
+ fieldNode = new DefaultMutableTreeNode("Field");
+   parametersNode = new DefaultMutableTreeNode("Parameters");
+        
+        
+        modelo = new DefaultTreeModel(root);
+        jTree1.setModel(modelo);
+
+        modelo.insertNodeInto(fieldNode, root, 0);
+        modelo.insertNodeInto(parametersNode, root, 1);
+            Integer countnode = 0;
             entityValid = true;
             parametersValid = true;
             jEditorPaneColumnFooter.setText("");
@@ -989,7 +1080,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 return;
             }
             //
-MySession.setAllTablesWithPrimaryKey(false);
+            MySession.setAllTablesWithPrimaryKey(false);
             EntityReader entityReader = new EntityReader();
             entityReader.readEntity(jTextFieldNameOfReport.getText(), jTextAreaEntity.getText());
             if (MySession.getEntidadList().isEmpty()) {
@@ -1004,7 +1095,7 @@ MySession.setAllTablesWithPrimaryKey(false);
                 return;
             }
             if (!MySession.getAllTablesWithPrimaryKey()) {
-               MySession.advertencia("No hay ningun atributo con llave primaria @Id");
+                MySession.advertencia("No hay ningun atributo con llave primaria @Id");
                 return;
             }
             String endline = "";
@@ -1029,6 +1120,8 @@ MySession.setAllTablesWithPrimaryKey(false);
 
                     jEditorPaneColumnHeader.setText(jEditorPaneColumnHeader.getText() + separator + a.getNombre() + endline);
                     jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + " F_" + a.getNombre() + endline);
+                    DefaultMutableTreeNode fielddata = new DefaultMutableTreeNode(a.getNombre());
+                    modelo.insertNodeInto(fielddata, fieldNode, countnode++);
 
                 }
 
@@ -1068,6 +1161,101 @@ MySession.setAllTablesWithPrimaryKey(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxDateTimeTitleActionPerformed
 
+    private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
+        try {
+
+            DefaultMutableTreeNode nodoSeleccionado;
+            nodoSeleccionado = (DefaultMutableTreeNode) jTree1.getLastSelectedPathComponent();
+//eventosNodoSeleccionado(nodoSeleccionado);
+
+            String s = " ";
+            jEditorPaneNode.setText("\n");
+            jEditorPaneNode.setText("hola");
+            /**
+             * Obtenemos la ruta seleccionada
+             */
+            TreePath rutaSeleccionada = evt.getPath();
+            Object[] nodos = rutaSeleccionada.getPath();
+            for (int i = 0; i < nodos.length; i++) {
+                Object nodo = nodos[i];
+                s += nodo.toString() + " / ";
+            }
+            s += "\n";
+            if (s.contains("")) {
+                jLabelSelected.setText(s);
+            }
+
+            if (s.contains("Report / Field /")) {
+                String t = s.replace("Report / Field /", "");
+                if (t.contains("/")) {
+                    t = t.replace("/", "");
+                }
+                nameOfFieldOrParameters = t;
+                jLabelTest.setText(t);
+
+            } else {
+                if (s.contains("Report / Parameters /")) {
+                    String t = s.replace("Report / Parameters /", "");
+                    if (t.contains("/")) {
+                        t = t.replace("/", "");
+                    }
+                    nameOfFieldOrParameters = t;
+                    jLabelTest.setText(t);
+                }
+            }
+//            jEditorPaneNode.setText(s);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTree1ValueChanged
+
+    private void jButtonAddParameter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddParameter1ActionPerformed
+        try {
+            String separator = "";
+            nameOfFieldOrParameters = nameOfFieldOrParameters.trim();
+            String search ="";
+           
+            switch (jComboBox1.getSelectedItem().toString().trim()) {
+                case "Title":
+                    search="[" +nameOfFieldOrParameters+"]";
+                    if (jEditorPaneTitle.getText().isEmpty() || jEditorPaneTitle.getText().equals("")) {
+                        separator = ",";
+                    }
+
+                    if (jEditorPaneTitle.getText().contains(search)) {
+                        MySession.advertencia("Ese parametro ya esta en la banda TITLE");
+                        return;
+                    }
+                    jEditorPaneTitle.setText(jEditorPaneTitle.getText() + "  " + search);
+                    break;
+                case "Details":
+search="[F_" +nameOfFieldOrParameters+"]";
+                    if (jEditorPaneDetails.getText().isEmpty() || jEditorPaneDetails.getText().equals("")) {
+                        separator = ",";
+                    }
+                    if (jEditorPaneDetails.getText().contains(search)) {
+                        MySession.advertencia("Ese campo ya esta en la banda Fields");
+                        return;
+                    }
+                    jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + search);
+                    break;
+                case "Page Header":
+                    break;
+
+                case "Column Header":
+                    break;
+                case "Column Footer":
+                    break;
+                case "Page Footer":
+                    break;
+                case "Summary":
+                    break;
+            }
+
+        } catch (Exception e) {
+            MySession.error("error() " + e.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_jButtonAddParameter1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -1079,6 +1267,7 @@ MySession.setAllTablesWithPrimaryKey(false);
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonAddField;
     private javax.swing.JButton jButtonAddParameter;
+    private javax.swing.JButton jButtonAddParameter1;
     private javax.swing.JButton jButtonGotoPage1;
     private javax.swing.JButton jButtonGotoPage2;
     private javax.swing.JButton jButtonGotoPage2From3;
@@ -1086,11 +1275,13 @@ MySession.setAllTablesWithPrimaryKey(false);
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JCheckBox jCheckBoxDateTimeTitle;
     private javax.swing.JCheckBox jCheckBoxDateTitle;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxFields;
     private javax.swing.JComboBox<String> jComboBoxParameters;
     private javax.swing.JEditorPane jEditorPaneColumnFooter;
     private javax.swing.JEditorPane jEditorPaneColumnHeader;
     private javax.swing.JEditorPane jEditorPaneDetails;
+    private javax.swing.JEditorPane jEditorPaneNode;
     private javax.swing.JEditorPane jEditorPanePageFooter;
     private javax.swing.JEditorPane jEditorPanePageHeader;
     private javax.swing.JEditorPane jEditorPaneSummer;
@@ -1101,6 +1292,8 @@ MySession.setAllTablesWithPrimaryKey(false);
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelSelected;
+    private javax.swing.JLabel jLabelTest;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -1126,6 +1319,7 @@ MySession.setAllTablesWithPrimaryKey(false);
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextAreaEntity;
@@ -1164,7 +1358,7 @@ MySession.setAllTablesWithPrimaryKey(false);
     private void generateNameReport() {
         try {
 //            jTextFieldReportShortPath.setText(MySession.getReportShortPath() + jTextFieldNameOfPackage.getText() + MySession.getFileSeparator() + jTextFieldNameOfReport.getText() + ".jrxml");
-          MySession.setReportShortPath(MySession.getReportShortPath() + jTextFieldNameOfPackage.getText() + MySession.getFileSeparator() + jTextFieldNameOfReport.getText() + ".jrxml");
+            MySession.setReportShortPath(MySession.getReportShortPath() + jTextFieldNameOfPackage.getText() + MySession.getFileSeparator() + jTextFieldNameOfReport.getText() + ".jrxml");
             MySession.setNameOfReport(jTextFieldNameOfReport.getText());
             MySession.setNameOfPackage(jTextFieldNameOfPackage.getText());
         } catch (Exception e) {
@@ -1251,13 +1445,13 @@ MySession.setAllTablesWithPrimaryKey(false);
                         if (!jTextAreaEntity.getText().contains("@Id") && jTextAreaEntity.getText().contains("{")) {
                             jTextAreaEntity.setText(jTextAreaEntity.getText() + "\n@Id");
                         }
-                    }else{
-                        line=line.trim();
+                    } else {
+                        line = line.trim();
                         System.out.println("line: " + line);
                         if (line.equals("pub")) {
                             jTextAreaEntity.setText(jTextAreaEntity.getText() + "lic class ");
                         }
-                        if (line.equals("pr") ) {
+                        if (line.equals("pr")) {
                             jTextAreaEntity.setText(jTextAreaEntity.getText() + "ivate ");
                         }
                         if (line.equals("private St") || line.equals("private st")) {
@@ -1279,13 +1473,13 @@ MySession.setAllTablesWithPrimaryKey(false);
             }
 
 //            for (String line : jTextAreaEntity.getText().split("\\n")) {
-
             generateNameReport();
         } catch (Exception e) {
             MySession.error("readkeyClass()" + e.getLocalizedMessage());
         }
 
     }
+
     private void processParametersKey() {
         try {
 
@@ -1295,23 +1489,23 @@ MySession.setAllTablesWithPrimaryKey(false);
                 int end = jTextAreaParameters.getLineEndOffset(i);
                 // Implement method processLine
                 String line = jTextAreaParameters.getText(start, end - start);
-                
-                        line=line.trim();
-                        if (line.equals("St") || line.equals("st")) {
-                            jTextAreaParameters.setText(jTextAreaParameters.getText() + "ring P_");
-                        }
 
-                        if (line.equals("In") || line.equals("in")) {
-                            jTextAreaParameters.setText(jTextAreaParameters.getText() + "teger P_");
-                        }
-                        if (line.equals("Do") || line.equals("do")) {
-                            jTextAreaParameters.setText(jTextAreaParameters.getText() + "uble P_");
-                        }
-                        if (line.equals("Da") || line.equals("da")) {
-                            jTextAreaParameters.setText(jTextAreaParameters.getText() + "te P_");
-                        }
-                    }
-          //  jTextAreaParameters.setText(jTextAreaParameters.getText().toUpperCase());
+                line = line.trim();
+                if (line.equals("St") || line.equals("st")) {
+                    jTextAreaParameters.setText(jTextAreaParameters.getText() + "ring P_");
+                }
+
+                if (line.equals("In") || line.equals("in")) {
+                    jTextAreaParameters.setText(jTextAreaParameters.getText() + "teger P_");
+                }
+                if (line.equals("Do") || line.equals("do")) {
+                    jTextAreaParameters.setText(jTextAreaParameters.getText() + "uble P_");
+                }
+                if (line.equals("Da") || line.equals("da")) {
+                    jTextAreaParameters.setText(jTextAreaParameters.getText() + "te P_");
+                }
+            }
+            //  jTextAreaParameters.setText(jTextAreaParameters.getText().toUpperCase());
 
         } catch (Exception e) {
             MySession.error("processParametersKey()" + e.getLocalizedMessage());
@@ -1324,6 +1518,7 @@ MySession.setAllTablesWithPrimaryKey(false);
      */
     private void readParameters() {
         try {
+            Integer countnode = 0;
             parametersValid = false;
             jComboBoxParameters.removeAllItems();
             parametersList = new ArrayList<>();
@@ -1346,6 +1541,8 @@ MySession.setAllTablesWithPrimaryKey(false);
                 Parameters parameters = new Parameters(name, type);
                 parametersList.add(parameters);
                 jComboBoxParameters.addItem(name);
+                DefaultMutableTreeNode fieldparameters = new DefaultMutableTreeNode(name);
+                modelo.insertNodeInto(fieldparameters, parametersNode, countnode++);
             }
             MySession.setParametersList(parametersList);
             parametersValid = true;
@@ -1356,8 +1553,7 @@ MySession.setAllTablesWithPrimaryKey(false);
 
     }
 
-    
-    private void saveReportAndCompile(){
+    private void saveReportAndCompile() {
         try {
             MySession.setTitleBand(jEditorPaneTitle.getText());
             MySession.setPageHeaderBand(jEditorPanePageHeader.getText());
@@ -1367,29 +1563,29 @@ MySession.setAllTablesWithPrimaryKey(false);
             MySession.setPageFooterBand(jEditorPanePageFooter.getText());
             MySession.setSummaryBand(jEditorPaneSummer.getText());
             MySession.setCompilarReporteaJasper("si");
-        JasperAllGenerador jasperAllGenerador = new JasperAllGenerador();
-        jasperAllGenerador.generar();
-        MySession.informacion("Se genero y se compilo el reporte");
+            JasperAllGenerador jasperAllGenerador = new JasperAllGenerador();
+            jasperAllGenerador.generar();
+            MySession.informacion("Se genero y se compilo el reporte");
         } catch (Exception e) {
-             MySession.error("saveReportAndCompile()" + e.getLocalizedMessage());
+            MySession.error("saveReportAndCompile()" + e.getLocalizedMessage());
         }
     }
-    
-    private Boolean isValidParameters(String texto){
+
+    private Boolean isValidParameters(String texto) {
         try {
-              for (String line : texto.split("\\n")) {
+            for (String line : texto.split("\\n")) {
                 String s = line;
                 if (s.contains("P_")) {
-                    
+
                     //SS
                     s = s.replace("private", "");
                 }
-                        line=line.trim();
+                line = line.trim();
             }
-            
+
             return true;
         } catch (Exception e) {
-             MySession.error("isValidParameters()" + e.getLocalizedMessage());
+            MySession.error("isValidParameters()" + e.getLocalizedMessage());
         }
         return false;
     }
