@@ -1057,9 +1057,9 @@ public final class ReportSmartTopComponent extends TopComponent {
             ProyectoInformacion projectInformation = new ProyectoInformacion();
             if (projectInformation.getInformation(project,"ejb")) {
                 if (!MySession.isEsProyectoWeb()) {
-                    nd = new NotifyDescriptor.Message("Seleccione un proyecto Web");
+                    nd = new NotifyDescriptor.Message("Seleccione un proyecto ejb");
                     DialogDisplayer.getDefault().notify(nd);
-                    jTextFieldNameOfProject.setText("");
+                    jTextFieldNameOfProjectEJB.setText("");
                     return;
                 }
                 // jTextFieldReportShortPath.setText(MySession.getReportShortPath());
