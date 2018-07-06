@@ -10,49 +10,13 @@
 	<field name="fielddate" class="java.util.Date"/>
 	<field name="fieldstring2" class="java.lang.String"/>
 	<field name="fieldobject" class="java.lang.Object"/>
-	<variable name="fieldinteger_1" class="java.lang.Integer" resetType="Group" resetGroup="group_fieldinteger" calculation="Sum">
-		<variableExpression><![CDATA[$F{fieldinteger}]]></variableExpression>
-	</variable>
 	<group name="group_fieldinteger">
 		<groupExpression><![CDATA[$F{fieldinteger}]]></groupExpression>
 		<groupHeader>
-			<band height="50">
-				<textField>
-					<reportElement x="123" y="16" width="223" height="20" uuid="b24210f8-c068-407b-887b-7286faa377da"/>
-					<textElement>
-						<font size="12" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fieldinteger}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="16" y="16" width="100" height="20" uuid="fafae88e-f0ac-4e92-8439-0052dae04eb7"/>
-					<textElement>
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Grupo]]></text>
-				</staticText>
-			</band>
+			<band height="50"/>
 		</groupHeader>
 		<groupFooter>
-			<band height="50">
-				<textField>
-					<reportElement x="126" y="17" width="100" height="20" uuid="16bfbf89-f177-4dad-93c7-a9b97520dc12"/>
-					<textElement>
-						<font size="12" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{fieldinteger_1}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement x="10" y="41" width="525" height="1" uuid="7f88be3d-f4bc-4d18-b233-4cf4022218c0"/>
-				</line>
-				<staticText>
-					<reportElement x="19" y="18" width="100" height="20" uuid="19848d00-2dfb-48f0-a397-707c42cf79d7"/>
-					<textElement>
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Group Footer]]></text>
-				</staticText>
-			</band>
+			<band height="50"/>
 		</groupFooter>
 	</group>
 	<background>
@@ -96,65 +60,66 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="23" splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band height="74" splitType="Stretch">
-			<textField>
-				<reportElement x="99" y="2" width="100" height="20" uuid="5776492b-a7af-4c42-bf08-8973f77bb07c"/>
-				<textFieldExpression><![CDATA[$F{fieldinteger}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="105" y="25" width="100" height="20" uuid="175faba2-a27e-48da-8b91-3c6e4126d23e"/>
-				<textFieldExpression><![CDATA[$F{fielddouble}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="324" y="32" width="100" height="20" uuid="306b9735-2b7c-4a3f-8291-fe238edb74da"/>
-				<textFieldExpression><![CDATA[$F{fielddate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="105" y="53" width="100" height="20" uuid="59771630-d2a1-4d28-bec4-4f73598f9690"/>
-				<textFieldExpression><![CDATA[$F{fieldstring2}]]></textFieldExpression>
-			</textField>
+		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="3" y="2" width="100" height="20" uuid="98f276e0-b058-4c81-b280-931b9dd056df"/>
+				<reportElement x="10" y="2" width="100" height="20" uuid="98f276e0-b058-4c81-b280-931b9dd056df"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[fieldinteger]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="25" width="100" height="20" uuid="6107ed2c-edd6-4645-8719-cbb8145cd586"/>
+				<reportElement x="117" y="2" width="100" height="20" uuid="c893fd53-d968-47ce-8bcb-b5baadc8c4ad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[fieldstring]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="2" width="100" height="20" uuid="6107ed2c-edd6-4645-8719-cbb8145cd586"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[fielddouble]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="223" y="32" width="100" height="20" uuid="297989e2-f9fb-47da-a9e7-42b2312e0ade"/>
+				<reportElement x="347" y="2" width="100" height="20" uuid="297989e2-f9fb-47da-a9e7-42b2312e0ade"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[fielddate]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="6" y="52" width="91" height="20" uuid="fdba07e1-81ce-4cc0-82ba-b591b1a067ef"/>
+				<reportElement x="456" y="2" width="91" height="20" uuid="fdba07e1-81ce-4cc0-82ba-b591b1a067ef"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[fieldstring2]]></text>
 			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
 			<textField>
-				<reportElement x="324" y="5" width="100" height="20" uuid="ece840ed-0919-4eef-ba07-9e386f94fada"/>
+				<reportElement x="10" y="2" width="100" height="20" uuid="5776492b-a7af-4c42-bf08-8973f77bb07c"/>
+				<textFieldExpression><![CDATA[$F{fieldinteger}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="2" width="100" height="20" uuid="ece840ed-0919-4eef-ba07-9e386f94fada"/>
 				<textFieldExpression><![CDATA[$F{fieldstring}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="223" y="3" width="91" height="20" uuid="c893fd53-d968-47ce-8bcb-b5baadc8c4ad"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[fieldstring]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="235" y="2" width="100" height="20" uuid="175faba2-a27e-48da-8b91-3c6e4126d23e"/>
+				<textFieldExpression><![CDATA[$F{fielddouble}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="347" y="2" width="100" height="20" uuid="306b9735-2b7c-4a3f-8291-fe238edb74da"/>
+				<textFieldExpression><![CDATA[$F{fielddate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="2" width="100" height="20" uuid="59771630-d2a1-4d28-bec4-4f73598f9690"/>
+				<textFieldExpression><![CDATA[$F{fieldstring2}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

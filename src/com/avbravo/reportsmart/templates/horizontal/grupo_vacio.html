@@ -2,14 +2,22 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7413559e-509d-4abb-aa23-f7b856ec7a7a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="17"/>
 	<parameter name="P_EMPRESA" class="java.lang.String"/>
-	<field name="fieldinteger" class="java.lang.Integer"/>
-	<field name="fieldstring" class="java.lang.String"/>
-	<field name="fielddouble" class="java.lang.Double"/>
-	<field name="fielddate" class="java.util.Date"/>
-	<field name="fieldstring2" class="java.lang.String"/>
-	<field name="fieldobject" class="java.lang.Object"/>
+	<field name="field1" class="java.lang.Integer"/>
+	<field name="field2" class="java.lang.String"/>
+	<variable name="fieldinteger_1" class="java.lang.Integer" resetType="Group" resetGroup="group_fieldinteger" calculation="Sum">
+		<variableExpression><![CDATA[$F{fieldinteger}]]></variableExpression>
+	</variable>
+	<group name="group_fieldinteger">
+		<groupExpression><![CDATA[$F{fieldinteger}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -54,61 +62,28 @@
 		<band height="23" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="74" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="99" y="2" width="100" height="20" uuid="5776492b-a7af-4c42-bf08-8973f77bb07c"/>
-				<textFieldExpression><![CDATA[$F{fieldinteger}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="105" y="25" width="100" height="20" uuid="175faba2-a27e-48da-8b91-3c6e4126d23e"/>
-				<textFieldExpression><![CDATA[$F{fielddouble}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="324" y="32" width="100" height="20" uuid="306b9735-2b7c-4a3f-8291-fe238edb74da"/>
-				<textFieldExpression><![CDATA[$F{fielddate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="105" y="53" width="100" height="20" uuid="59771630-d2a1-4d28-bec4-4f73598f9690"/>
-				<textFieldExpression><![CDATA[$F{fieldstring2}]]></textFieldExpression>
+				<reportElement x="86" y="1" width="160" height="20" uuid="62089736-5ea5-4e09-ad73-177eb40b9cc9"/>
+				<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="2" width="100" height="20" uuid="98f276e0-b058-4c81-b280-931b9dd056df"/>
+				<reportElement x="2" y="1" width="77" height="20" uuid="b28f8a74-c9fa-4aac-9158-3c1e333a45ff"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[fieldinteger]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="3" y="25" width="100" height="20" uuid="6107ed2c-edd6-4645-8719-cbb8145cd586"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[fielddouble]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="223" y="32" width="100" height="20" uuid="297989e2-f9fb-47da-a9e7-42b2312e0ade"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[fielddate]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="6" y="52" width="91" height="20" uuid="fdba07e1-81ce-4cc0-82ba-b591b1a067ef"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[fieldstring2]]></text>
+				<text><![CDATA[field1]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="324" y="5" width="100" height="20" uuid="ece840ed-0919-4eef-ba07-9e386f94fada"/>
-				<textFieldExpression><![CDATA[$F{fieldstring}]]></textFieldExpression>
+				<reportElement x="370" y="1" width="160" height="20" uuid="b4c0b261-f6a8-44f3-a65a-da6d3712ddb1"/>
+				<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="223" y="3" width="91" height="20" uuid="c893fd53-d968-47ce-8bcb-b5baadc8c4ad"/>
+				<reportElement x="272" y="1" width="90" height="20" uuid="109b4696-2d5c-4ebc-bbe9-42f1ff08bbfc"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[fieldstring]]></text>
+				<text><![CDATA[field2]]></text>
 			</staticText>
 		</band>
 	</detail>
@@ -131,3 +106,4 @@
 		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>
+

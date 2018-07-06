@@ -2,16 +2,27 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7413559e-509d-4abb-aa23-f7b856ec7a7a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="17"/>
 	<parameter name="P_EMPRESA" class="java.lang.String"/>
-	<field name="idtamano" class="java.lang.Integer"/>
-	<field name="descripcion" class="java.lang.String"/>
-	<field name="activo" class="java.lang.String"/>
+	<field name="field1" class="java.lang.Integer"/>
+	<field name="field2" class="java.lang.String"/>
+	<variable name="fieldinteger_1" class="java.lang.Integer" resetType="Group" resetGroup="group_fieldinteger" calculation="Sum">
+		<variableExpression><![CDATA[$F{fieldinteger}]]></variableExpression>
+	</variable>
+	<group name="group_fieldinteger">
+		<groupExpression><![CDATA[$F{fieldinteger}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="29" splitType="Stretch"/>
+		<band height="34" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="80" splitType="Stretch">
@@ -48,42 +59,48 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
-			<staticText>
-				<reportElement x="13" y="2" width="100" height="20" uuid="c98d9903-3dc1-421c-9ed1-ba6a170fd9a6"/>
-				<text><![CDATA[idtamano]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="124" y="2" width="100" height="20" uuid="c5a169a6-2d29-43af-a13a-d4d1be4d0784"/>
-				<text><![CDATA[descripcion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="247" y="2" width="100" height="20" uuid="bc7078b2-a18a-4cfe-87fd-b984d7adfb28"/>
-				<text><![CDATA[activo]]></text>
-			</staticText>
-		</band>
+		<band height="23" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="28" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="9" y="2" width="100" height="20" uuid="aa45e8b9-e63b-423f-8b1d-f6370f9118ad"/>
-				<textFieldExpression><![CDATA[$F{idtamano}]]></textFieldExpression>
+				<reportElement x="86" y="1" width="160" height="20" uuid="62089736-5ea5-4e09-ad73-177eb40b9cc9"/>
+				<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="2" y="1" width="77" height="20" uuid="b28f8a74-c9fa-4aac-9158-3c1e333a45ff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[field1]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="125" y="1" width="100" height="20" uuid="8a97a7cf-b7d3-42ca-8bc5-f2c8d71fd8a6"/>
-				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+				<reportElement x="370" y="1" width="160" height="20" uuid="b4c0b261-f6a8-44f3-a65a-da6d3712ddb1"/>
+				<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="247" y="1" width="100" height="20" uuid="837af937-469c-4175-891c-7101686cccb9"/>
-				<textFieldExpression><![CDATA[$F{activo}]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement x="272" y="1" width="90" height="20" uuid="109b4696-2d5c-4ebc-bbe9-42f1ff08bbfc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[field2]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="438" y="11" width="35" height="20" uuid="13d90c7d-5129-4e96-a266-beec61e344cf"/>
+				<text><![CDATA[Pag.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="11" width="67" height="20" uuid="dd4cb209-d2c5-4481-b6c3-83ee72d88a8c"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
