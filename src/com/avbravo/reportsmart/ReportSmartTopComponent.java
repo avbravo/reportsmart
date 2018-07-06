@@ -5,14 +5,14 @@
  */
 package com.avbravo.reportsmart;
 
+import com.avbravo.reportsmart.beans.Atributos;
+import com.avbravo.reportsmart.beans.Entidad;
 import com.avbravo.reportsmart.domains.EntityReader;
 import com.avbravo.reportsmart.domains.MySession;
 import com.avbravo.reportsmart.domains.Parameters;
 import com.avbravo.reportsmart.domains.Utilidades;
 import com.avbravo.reportsmart.jasper.JasperAllGenerador;
 import com.avbravo.reportsmart.projects.ProyectoInformacion;
-import com.avbravo.reportsmart.beans.Atributos;
-import com.avbravo.reportsmart.beans.Entidad;
 import java.awt.GridBagConstraints;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +21,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.JTree;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -39,7 +38,7 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
-
+ 
 /**
  * Top component which displays something.
  */
@@ -125,11 +124,16 @@ public final class ReportSmartTopComponent extends TopComponent {
         jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextFieldNameOfProject = new javax.swing.JTextField();
-        jButtonOpenProjectEJB = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldNameOfProjectEJB = new javax.swing.JTextField();
-        jButtonOpenWebProject = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaEntity = new javax.swing.JTextArea();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextAreaParameters = new javax.swing.JTextArea();
+        jButtonGotoPage2 = new javax.swing.JButton();
         jPanelDesign = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
@@ -147,13 +151,9 @@ public final class ReportSmartTopComponent extends TopComponent {
         jScrollPane17 = new javax.swing.JScrollPane();
         jEditorPanePageFooter = new javax.swing.JEditorPane();
         jPanel7 = new javax.swing.JPanel();
-        jComboBoxParameters = new javax.swing.JComboBox<>();
-        jComboBoxFields = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButtonGotoPage1 = new javax.swing.JButton();
         jButtonGotoPage3 = new javax.swing.JButton();
-        jButtonAddParameter = new javax.swing.JButton();
-        jButtonAddField = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -183,15 +183,6 @@ public final class ReportSmartTopComponent extends TopComponent {
         jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jEditorPaneNode = new javax.swing.JEditorPane();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextAreaEntity = new javax.swing.JTextArea();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTextAreaParameters = new javax.swing.JTextArea();
-        jButtonGotoPage2 = new javax.swing.JButton();
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel5.border.title"))); // NOI18N
 
@@ -267,28 +258,15 @@ public final class ReportSmartTopComponent extends TopComponent {
         jTextFieldNameOfProject.setEditable(false);
         jTextFieldNameOfProject.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextFieldNameOfProject.text")); // NOI18N
 
-        jButtonOpenProjectEJB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/project.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonOpenProjectEJB, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonOpenProjectEJB.text")); // NOI18N
-        jButtonOpenProjectEJB.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/project.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton2.text")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOpenProjectEJBActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel1.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel3.text")); // NOI18N
-
-        jTextFieldNameOfProjectEJB.setEditable(false);
-        jTextFieldNameOfProjectEJB.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextFieldNameOfProjectEJB.text")); // NOI18N
-
-        jButtonOpenWebProject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/project.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonOpenWebProject, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonOpenWebProject.text")); // NOI18N
-        jButtonOpenWebProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOpenWebProjectActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -296,40 +274,95 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonOpenWebProject)
-                        .addGap(24, 24, 24))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jTextFieldNameOfProjectEJB, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonOpenProjectEJB)
-                        .addGap(18, 18, 18))))
+                .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButtonOpenWebProject)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonOpenProjectEJB))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldNameOfProjectEJB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldNameOfProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel7.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel5.text")); // NOI18N
+
+        jTextAreaEntity.setColumns(20);
+        jTextAreaEntity.setRows(5);
+        jTextAreaEntity.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaEntity.toolTipText")); // NOI18N
+        jTextAreaEntity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaEntityKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTextAreaEntity);
+
+        jTextAreaParameters.setColumns(20);
+        jTextAreaParameters.setRows(5);
+        jTextAreaParameters.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaParameters.toolTipText")); // NOI18N
+        jTextAreaParameters.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaParametersKeyPressed(evt);
+            }
+        });
+        jScrollPane10.setViewportView(jTextAreaParameters);
+
+        jButtonGotoPage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/next_1.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage2, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.text")); // NOI18N
+        jButtonGotoPage2.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.toolTipText")); // NOI18N
+        jButtonGotoPage2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGotoPage2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButtonGotoPage2)))
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jButtonGotoPage2)
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanelProyectoLayout = new javax.swing.GroupLayout(jPanelProyecto);
@@ -341,17 +374,21 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelProyectoLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 370, Short.MAX_VALUE))
         );
         jPanelProyectoLayout.setVerticalGroup(
             jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProyectoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(429, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelProyecto.TabConstraints.tabTitle"), jPanelProyecto); // NOI18N
@@ -408,22 +445,6 @@ public final class ReportSmartTopComponent extends TopComponent {
             }
         });
 
-        jButtonAddParameter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/add.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddParameter, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonAddParameter.text")); // NOI18N
-        jButtonAddParameter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddParameterActionPerformed(evt);
-            }
-        });
-
-        jButtonAddField.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/add.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonAddField, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonAddField.text")); // NOI18N
-        jButtonAddField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddFieldActionPerformed(evt);
-            }
-        });
-
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/saverun.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jButton4, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton4.text")); // NOI18N
         jButton4.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton4.toolTipText")); // NOI18N
@@ -469,52 +490,36 @@ public final class ReportSmartTopComponent extends TopComponent {
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabelTest, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 27, Short.MAX_VALUE))))
+                                .addGap(0, 15, Short.MAX_VALUE))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxParameters, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxFields, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonAddParameter1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButtonGotoPage1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddParameter1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jComboBoxParameters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jButtonAddParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jComboBoxFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButtonAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonGotoPage1))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGotoPage1)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonGotoPage3)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -538,7 +543,8 @@ public final class ReportSmartTopComponent extends TopComponent {
                     .addComponent(jScrollPane11)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,7 +581,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDesignLayout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 245, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelDesign.TabConstraints.tabTitle"), jPanelDesign); // NOI18N
@@ -682,7 +688,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(479, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanelCode.TabConstraints.tabTitle"), jPanelCode); // NOI18N
@@ -713,23 +719,16 @@ public final class ReportSmartTopComponent extends TopComponent {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTable1.columnModel.title0")); // NOI18N
-            jTable1.getColumnModel().getColumn(1).setHeaderValue(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTable1.columnModel.title1")); // NOI18N
-            jTable1.getColumnModel().getColumn(2).setHeaderValue(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTable1.columnModel.title2")); // NOI18N
-            jTable1.getColumnModel().getColumn(3).setHeaderValue(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTable1.columnModel.title3")); // NOI18N
-            jTable1.getColumnModel().getColumn(4).setHeaderValue(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTable1.columnModel.title4")); // NOI18N
-        }
 
         jScrollPane5.setViewportView(jEditorPaneNode);
 
@@ -737,57 +736,49 @@ public final class ReportSmartTopComponent extends TopComponent {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap(37, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addContainerGap(90, Short.MAX_VALUE)
+                                .addGap(53, 53, 53)
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(405, 405, 405))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(165, 165, 165)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)))
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxDateTitle)
-                            .addComponent(jCheckBoxDateTimeTitle)
-                            .addComponent(jButton7)))
+                                    .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBoxDateTitle)
+                    .addComponent(jCheckBoxDateTimeTitle)
+                    .addComponent(jButton7))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxDateTimeTitle))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxDateTimeTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxDateTitle, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
+                        .addGap(103, 103, 103)))
                 .addContainerGap())
         );
 
@@ -804,7 +795,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 419, Short.MAX_VALUE))
+                .addGap(0, 375, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -824,99 +815,6 @@ public final class ReportSmartTopComponent extends TopComponent {
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel7.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jLabel5.text")); // NOI18N
-
-        jTextAreaEntity.setColumns(20);
-        jTextAreaEntity.setRows(5);
-        jTextAreaEntity.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaEntity.toolTipText")); // NOI18N
-        jTextAreaEntity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextAreaEntityKeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTextAreaEntity);
-
-        jTextAreaParameters.setColumns(20);
-        jTextAreaParameters.setRows(5);
-        jTextAreaParameters.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextAreaParameters.toolTipText")); // NOI18N
-        jTextAreaParameters.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextAreaParametersKeyPressed(evt);
-            }
-        });
-        jScrollPane10.setViewportView(jTextAreaParameters);
-
-        jButtonGotoPage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/avbravo/reportsmart/resources/next_1.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jButtonGotoPage2, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.text")); // NOI18N
-        jButtonGotoPage2.setToolTipText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButtonGotoPage2.toolTipText")); // NOI18N
-        jButtonGotoPage2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGotoPage2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonGotoPage2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jButtonGotoPage2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(83, 83, 83))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
-        );
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 380, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(314, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jPanel11.TabConstraints.tabTitle"), jPanel11); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -925,9 +823,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -982,39 +878,6 @@ public final class ReportSmartTopComponent extends TopComponent {
         jTabbedPane1.add(jPanelDesign, "Design");
     }//GEN-LAST:event_jButtonGotoPage2From3ActionPerformed
 
-    private void jButtonAddParameterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddParameterActionPerformed
-        // TODO add your handling code here:
-        try {
-            String separator = "";
-            if (jEditorPaneTitle.getText().isEmpty() || jEditorPaneTitle.getText().equals("")) {
-                separator = ",";
-            }
-            if (jEditorPaneTitle.getText().contains(jComboBoxParameters.getSelectedItem().toString())) {
-                MySession.advertencia("Ese parametro ya esta en la banda TITLE");
-                return;
-            }
-            jEditorPaneTitle.setText(jEditorPaneTitle.getText() + "  " + jComboBoxParameters.getSelectedItem());
-        } catch (Exception e) {
-            MySession.error("error() " + e.getLocalizedMessage());
-        }
-    }//GEN-LAST:event_jButtonAddParameterActionPerformed
-
-    private void jButtonAddFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFieldActionPerformed
-        try {
-            String separator = "";
-            if (jEditorPaneDetails.getText().isEmpty() || jEditorPaneDetails.getText().equals("")) {
-                separator = ",";
-            }
-            if (jEditorPaneDetails.getText().contains(jComboBoxFields.getSelectedItem().toString())) {
-                MySession.advertencia("Ese campo ya esta en la banda Fields");
-                return;
-            }
-            jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + "F_" + jComboBoxFields.getSelectedItem());
-        } catch (Exception e) {
-            MySession.error("error() " + e.getLocalizedMessage());
-        }
-    }//GEN-LAST:event_jButtonAddFieldActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         MySession.setCompilarReporteaJasper("no");
@@ -1037,9 +900,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         readkeyClass();
     }//GEN-LAST:event_jTextAreaEntityKeyPressed
 
-    private void jButtonOpenProjectEJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenProjectEJBActionPerformed
-     
-        
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             JFileChooser projectChooser = new JFileChooser();
             projectChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -1047,16 +908,16 @@ public final class ReportSmartTopComponent extends TopComponent {
 
             File projectToBeOpenedFile = projectChooser.getSelectedFile();
             if (projectToBeOpenedFile == null) {
-                MySession.advertencia("Seleccione un proyecto ejb");
-                jTextFieldNameOfProjectEJB.setText("");
+                MySession.advertencia("Seleccione un proyecto web");
+                jTextFieldNameOfProject.setText("");
                 return;
             }
             FileObject projectToBeOpened = FileUtil.toFileObject(projectToBeOpenedFile);
 
             Project project = ProjectManager.getDefault().findProject(projectToBeOpened);
             if (project == null) {
-                MySession.advertencia("Seleccione un proyecto EJB");
-                jTextFieldNameOfProjectEJB.setText("");
+                MySession.advertencia("Seleccione un proyecto Web");
+                jTextFieldNameOfProject.setText("");
                 return;
 
             }
@@ -1068,15 +929,15 @@ public final class ReportSmartTopComponent extends TopComponent {
              */
             String lnombre_proyecto = project.getProjectDirectory().getName();
 
-            jTextFieldNameOfProjectEJB.setText(lnombre_proyecto);
+            jTextFieldNameOfProject.setText(lnombre_proyecto);
             //  project.getProjectDirectory();
 
             ProyectoInformacion projectInformation = new ProyectoInformacion();
-            if (projectInformation.getInformation(project,"ejb")) {
+            if (projectInformation.getInformation(project)) {
                 if (!MySession.isEsProyectoWeb()) {
-                    nd = new NotifyDescriptor.Message("Seleccione un proyecto ejb");
+                    nd = new NotifyDescriptor.Message("Seleccione un proyecto Web");
                     DialogDisplayer.getDefault().notify(nd);
-                    jTextFieldNameOfProjectEJB.setText("");
+                    jTextFieldNameOfProject.setText("");
                     return;
                 }
                 // jTextFieldReportShortPath.setText(MySession.getReportShortPath());
@@ -1085,7 +946,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         } catch (Exception ex) {
             MySession.error("Error" + ex.toString());
         }
-    }//GEN-LAST:event_jButtonOpenProjectEJBActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
         generateNameReport();
@@ -1169,7 +1030,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 return;
             }
             String endline = "";
-            jComboBoxFields.removeAllItems();
+         
 
             for (Entidad e : MySession.getEntidadList()) {
                 Integer count = 0;
@@ -1186,7 +1047,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                         separator = ",";
                     }
 
-                    jComboBoxFields.addItem(a.getNombre());
+                 
 
                     jEditorPaneColumnHeader.setText(jEditorPaneColumnHeader.getText() + separator + a.getNombre() + endline);
                     jEditorPaneDetails.setText(jEditorPaneDetails.getText() + separator + " F_" + a.getNombre() + endline);
@@ -1326,77 +1187,24 @@ search="[F_" +nameOfFieldOrParameters+"]";
         }
     }//GEN-LAST:event_jButtonAddParameter1ActionPerformed
 
-    private void jButtonOpenWebProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenWebProjectActionPerformed
-   try {
-            JFileChooser projectChooser = new JFileChooser();
-            projectChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            projectChooser.showOpenDialog(null);
-
-            File projectToBeOpenedFile = projectChooser.getSelectedFile();
-            if (projectToBeOpenedFile == null) {
-                MySession.advertencia("Seleccione un proyecto web");
-                jTextFieldNameOfProject.setText("");
-                return;
-            }
-            FileObject projectToBeOpened = FileUtil.toFileObject(projectToBeOpenedFile);
-
-            Project project = ProjectManager.getDefault().findProject(projectToBeOpened);
-            if (project == null) {
-                MySession.advertencia("Seleccione un proyecto Web");
-                jTextFieldNameOfProject.setText("");
-                return;
-
-            }
-            Project[] array = new Project[1];
-            array[0] = project;
-            OpenProjects.getDefault().open(array, false);
-            /*
-            *
-             */
-            String lnombre_proyecto = project.getProjectDirectory().getName();
-
-            jTextFieldNameOfProject.setText(lnombre_proyecto);
-            //  project.getProjectDirectory();
-
-            ProyectoInformacion projectInformation = new ProyectoInformacion();
-            if (projectInformation.getInformation(project,"web")) {
-                if (!MySession.isEsProyectoWeb()) {
-                    nd = new NotifyDescriptor.Message("Seleccione un proyecto Web");
-                    DialogDisplayer.getDefault().notify(nd);
-                    jTextFieldNameOfProject.setText("");
-                    return;
-                }
-                // jTextFieldReportShortPath.setText(MySession.getReportShortPath());
-            }
-
-        } catch (Exception ex) {
-            MySession.error("Error" + ex.toString());
-        } 
-    }//GEN-LAST:event_jButtonOpenWebProjectActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButtonAddField;
-    private javax.swing.JButton jButtonAddParameter;
     private javax.swing.JButton jButtonAddParameter1;
     private javax.swing.JButton jButtonGotoPage1;
     private javax.swing.JButton jButtonGotoPage2;
     private javax.swing.JButton jButtonGotoPage2From3;
     private javax.swing.JButton jButtonGotoPage3;
-    private javax.swing.JButton jButtonOpenProjectEJB;
-    private javax.swing.JButton jButtonOpenWebProject;
     private javax.swing.JButton jButtonRefresh;
     private javax.swing.JCheckBox jCheckBoxDateTimeTitle;
     private javax.swing.JCheckBox jCheckBoxDateTitle;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBoxFields;
-    private javax.swing.JComboBox<String> jComboBoxParameters;
     private javax.swing.JEditorPane jEditorPaneColumnFooter;
     private javax.swing.JEditorPane jEditorPaneColumnHeader;
     private javax.swing.JEditorPane jEditorPaneDetails;
@@ -1407,7 +1215,6 @@ search="[F_" +nameOfFieldOrParameters+"]";
     private javax.swing.JEditorPane jEditorPaneTitle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1416,7 +1223,6 @@ search="[F_" +nameOfFieldOrParameters+"]";
     private javax.swing.JLabel jLabelTest;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1447,7 +1253,6 @@ search="[F_" +nameOfFieldOrParameters+"]";
     private javax.swing.JTextArea jTextAreaParameters;
     private javax.swing.JTextField jTextFieldNameOfPackage;
     private javax.swing.JTextField jTextFieldNameOfProject;
-    private javax.swing.JTextField jTextFieldNameOfProjectEJB;
     private javax.swing.JTextField jTextFieldNameOfReport;
     private javax.swing.JTextField jTextFieldTitle0;
     private javax.swing.JTextField jTextFieldTitle1;
@@ -1642,7 +1447,7 @@ search="[F_" +nameOfFieldOrParameters+"]";
         try {
             Integer countnode = 0;
             parametersValid = false;
-            jComboBoxParameters.removeAllItems();
+           
             parametersList = new ArrayList<>();
             if (jTextAreaParameters.getText().isEmpty()) {
                 parametersValid = true;
@@ -1662,7 +1467,7 @@ search="[F_" +nameOfFieldOrParameters+"]";
                 String type = Utilidades.mysqlToJava(splited[0]);
                 Parameters parameters = new Parameters(name, type);
                 parametersList.add(parameters);
-                jComboBoxParameters.addItem(name);
+              
                 DefaultMutableTreeNode fieldparameters = new DefaultMutableTreeNode(name);
                 modelo.insertNodeInto(fieldparameters, parametersNode, countnode++);
             }
