@@ -23,8 +23,9 @@ public class ProyectoInformacion extends CookieAction {
     String web = "";
     String src = "";
 
-    public boolean getInformation(Project project) {
+    public boolean getInformation(Project project, String typeOfproject) {
         try {
+            typeOfproject=typeOfproject.toLowerCase();
             web = "";
 
             MySession.setEsProyectoWeb(false);
