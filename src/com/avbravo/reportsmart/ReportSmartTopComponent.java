@@ -176,9 +176,7 @@ public final class ReportSmartTopComponent extends TopComponent {
         jTextFieldTitle2 = new javax.swing.JTextField();
         jTextFieldTitle0 = new javax.swing.JTextField();
         jCheckBoxDateTitle = new javax.swing.JCheckBox();
-        jCheckBoxDateTimeTitle = new javax.swing.JCheckBox();
         jTextFieldTitle1 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -377,7 +375,7 @@ public final class ReportSmartTopComponent extends TopComponent {
                 .addGroup(jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 370, Short.MAX_VALUE))
+                .addGap(0, 315, Short.MAX_VALUE))
         );
         jPanelProyectoLayout.setVerticalGroup(
             jPanelProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,7 +573,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDesignLayout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelDesignLayout.setVerticalGroup(
             jPanelDesignLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,16 +704,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBoxDateTimeTitle, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jCheckBoxDateTimeTitle.text")); // NOI18N
-        jCheckBoxDateTimeTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxDateTimeTitleActionPerformed(evt);
-            }
-        });
-
         jTextFieldTitle1.setText(org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jTextFieldTitle1.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jButton7, org.openide.util.NbBundle.getMessage(ReportSmartTopComponent.class, "ReportSmartTopComponent.jButton7.text")); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -739,7 +728,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -753,19 +742,13 @@ public final class ReportSmartTopComponent extends TopComponent {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBoxDateTitle)
-                    .addComponent(jCheckBoxDateTimeTitle)
-                    .addComponent(jButton7))
-                .addContainerGap())
+                .addComponent(jCheckBoxDateTitle)
+                .addGap(402, 402, 402))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBoxDateTimeTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextFieldTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jTextFieldTitle0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -788,8 +771,8 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -804,7 +787,7 @@ public final class ReportSmartTopComponent extends TopComponent {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 263, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -819,7 +802,10 @@ public final class ReportSmartTopComponent extends TopComponent {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1088,10 +1074,6 @@ public final class ReportSmartTopComponent extends TopComponent {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxDateTitleActionPerformed
 
-    private void jCheckBoxDateTimeTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDateTimeTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxDateTimeTitleActionPerformed
-
     private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
         try {
 
@@ -1195,14 +1177,12 @@ search="[F_" +nameOfFieldOrParameters+"]";
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonAddParameter1;
     private javax.swing.JButton jButtonGotoPage1;
     private javax.swing.JButton jButtonGotoPage2;
     private javax.swing.JButton jButtonGotoPage2From3;
     private javax.swing.JButton jButtonGotoPage3;
     private javax.swing.JButton jButtonRefresh;
-    private javax.swing.JCheckBox jCheckBoxDateTimeTitle;
     private javax.swing.JCheckBox jCheckBoxDateTitle;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JEditorPane jEditorPaneColumnFooter;
